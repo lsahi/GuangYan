@@ -97,7 +97,6 @@ public class JudjeServlet extends HttpServlet {
 		Customer stu=temp.getSigner(sno);
 
 		left=charged+Integer.parseInt(stu.getTimesLeft());
-		System.out.println(left);
 		c.setSname(sname);
 		c.setPhone(phone);
 		c.setTimesLeft(left);					//实际剩余
@@ -162,7 +161,7 @@ public class JudjeServlet extends HttpServlet {
 			}*/
 			//System.out.println(c.getInformation()+"111");
 			customerDAOImpl.save(c);
-			request.setAttribute("msg", "恭喜你，该身份证" + request.getParameter("sno") + "注册成功，请return查看或继续add");
+			request.setAttribute("msg", "恭喜你，该身份证" + request.getParameter("sno") + "注册成功，请返回查看或继续添加");
 			request.getRequestDispatcher("add.jsp").forward(request, response);
 		}
 	}

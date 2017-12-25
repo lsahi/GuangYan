@@ -53,29 +53,29 @@
 		<h2 class="form-signin-heading">添加用户</h2>
 		<table>
 			<tr>
-				<td>Sno:</td>
+				<td>身份证Sno:</td>
 				<td><input type = "text" name = "sno" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
 			</tr>
 			
 			<tr>
-				<td>Sname:</td>
+				<td>姓名Sname:</td>
 				<td><input type = "text" name = "sname" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sname")%>"></td>
 			</tr>
 			
 			<tr>
-				<td>Phone:</td>
+				<td>电话Phone:</td>
 				<td><input type = "text" name = "phone" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("phone")%>"></td>
 			</tr>
 			
 			<tr>
-				<td>information:</td>
+				<td>备注信息information:</td>
 				<td><input type = "text" name = "information" class = "form-control" value = "无备注"></td>
 			</tr>
 			
 			<!-- addCustomerServlet.do -->
 			<tr>	
-				<td><input type = "submit" value = "Add" class="btn btn-primary"></td>
-				<td class = "btn btn-link"><a href = "queryCustomerServlet.do">return</a></td>
+				<td><input type = "submit" value = "添加" class="btn btn-primary"></td>
+				<td class = "btn btn-link"><a href = "queryCustomerServlet.do">返回</a></td>
 			</tr>
 		</table>
 	</form>

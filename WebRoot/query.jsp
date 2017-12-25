@@ -58,7 +58,7 @@
 			
 			<!-- addCustomerServlet.do -->
 			<tr>
-				<td><input type = "submit" value = "Query" class="btn btn-primary"></td>
+				<td><input type = "submit" value = "查询" class="btn btn-primary"></td>
 			</tr>
 		</table>
 	</form>
@@ -92,8 +92,8 @@
 				<th><%=c.getTimesLeft() %></th>
 				<th><%=c.getInformation() %></th>
 				<th>
-					<a href = "delete.do?sno=<%=c.getSno() %>" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="left" title="你确定要删除?">删除Delete</a>
-					<a href = "update.do?sno=<%=c.getSno() %>" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="你确定要修改?">修改Update</a>
+					<a href = "delete.do?sno=<%=c.getSno() %>" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="left" title="你确定要删除?">删除</a>
+					<a href = "edit.do?sno=<%=c.getSno() %>" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="你确定要修改?">修改</a>
 				</th>
 			</tr>
 			

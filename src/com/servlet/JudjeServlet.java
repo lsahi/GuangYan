@@ -66,12 +66,21 @@ public class JudjeServlet extends HttpServlet {
 			response.sendRedirect("index.jsp");
 		}
 	}
+	
+	private void delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		
+		String sno = request.getParameter("sno");
+		customerDAOImpl.delete(sno);
+		response.sendRedirect("queryCustomerServlet.do");
+	}
 
 	private void update(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("utf-8");// setCharset
-		String oldSno = request.getParameter("oldSno");
+		//request.setCharacterEncoding("utf-8");// setCharset
 		
+		//
+		//String oldSno = request.getParameter("sno");
 		String sno = request.getParameter("sno");
 		String sname = request.getParameter("sname");
 		String phone = request.getParameter("phone");
@@ -79,31 +88,30 @@ public class JudjeServlet extends HttpServlet {
 		String information = request.getParameter("information");
 		
 		//test accepted 
-		//System.out.println(information);
 
-		int charged =Integer.parseInt(timesLeft);//本次新增
-		
 		Customer c = new Customer();
 		CustomerDAOImpl temp=new CustomerDAOImpl();
 		int left;
 		//left=Integer.parseInt(c.getTimesLeft()); //加上数据库中原有
 		c.setSno(sno);
 		Customer stu=temp.getSigner(sno);
+		int charged =Integer.parseInt(timesLeft);//本次新增
 		left=charged+Integer.parseInt(stu.getTimesLeft());
 		c.setSname(sname);
 		c.setPhone(phone);
 		c.setTimesLeft(left);					//实际剩余
 		c.setInformation(information);
-		request.setAttribute("customer", c);
+		
 		//
 		
-		if (oldSno.equals(sno)) {
+		/*if (oldSno.equals(sno)) {
 			customerDAOImpl.update(c);
 			response.sendRedirect("queryCustomerServlet.do");
 		} else {
 			request.setAttribute("msg", "不能修改身份证号，请重新输入");
 			request.getRequestDispatcher("update.jsp").forward(request, response);
-		}
+		}*/
+		response.sendRedirect("queryCustomerServlet.do");
 	}
 
 	private void edit(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -113,14 +121,6 @@ public class JudjeServlet extends HttpServlet {
 		Customer customer = customerDAOImpl.getSigner(sno);
 		request.setAttribute("customer", customer);
 		request.getRequestDispatcher("update.jsp").forward(request, response);
-	}
-
-	private void delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		
-		String sno = request.getParameter("sno");
-		customerDAOImpl.delete(sno);
-		response.sendRedirect("queryCustomerServlet.do");
 	}
 
 	private void query(HttpServletRequest request, HttpServletResponse response) throws Exception {

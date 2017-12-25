@@ -36,7 +36,7 @@
     <!-- 登陆  -->
 	<div class="center-block" style="width:400px;">
 	<form name="loginTest" action="pwCertificate.do" method = "post">
-		<h2 class="form-signin-heading">Please Input</h2>
+		<h2 class="form-signin-heading">输入账号密码</h2>
 		<table>
 			<tr>
 				<td>账号:</td>
@@ -51,7 +51,6 @@
 			<!-- addCustomerServlet.do -->
 			<tr>	
 				<td><input type = "submit" value = "登陆" class="btn btn-primary"></td>
-				<!-- <td class = "btn btn-link"><a href = "queryCustomerServlet.do">return</a></td> -->
 			</tr>
 		</table>
 	</form>

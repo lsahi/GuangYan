@@ -59,7 +59,9 @@
 		<table>
 			<tr>
 				<td>编号:</td>
-				<td><input type = "text" name = "sno" class = "form-control" value = "<%=c.getSno() %>"></td>
+				<td><input type = "text" name = "sno" class = "form-control" value = "<%=c.getSno() %>" readonly="true"></td>
+				<!-- <td><%=c.getSno() %></td> -->
+				<!-- readonly 只读属性 姓名栏中可以考虑添加 -->
 			</tr>
 			
 			<tr>
@@ -88,8 +90,8 @@
 			
 			<!-- addCustomerServlet.do -->
 			<tr>	
-				<td><input type = "submit" value = "Update" class="btn btn-primary"></td>
-				<td class = "btn btn-link"><a href = "queryCustomerServlet.do">return</a></td>
+				<td><input type = "submit" value = "确定本次修改" class="btn btn-primary"></td>
+				<td class = "btn btn-link"><a href = "queryCustomerServlet.do">放弃本次操作</a></td>
 			</tr>
 		</table>
 	</form>

@@ -86,7 +86,7 @@ public class JudjeServlet extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String timesLeft = request.getParameter("timesLeft");
 		String information = request.getParameter("information");
-		
+		int charged =Integer.parseInt(timesLeft);//本次新增
 		//test accepted 
 
 		Customer c = new Customer();
@@ -95,8 +95,9 @@ public class JudjeServlet extends HttpServlet {
 		//left=Integer.parseInt(c.getTimesLeft()); //加上数据库中原有
 		c.setSno(sno);
 		Customer stu=temp.getSigner(sno);
-		int charged =Integer.parseInt(timesLeft);//本次新增
+
 		left=charged+Integer.parseInt(stu.getTimesLeft());
+		System.out.println(left);
 		c.setSname(sname);
 		c.setPhone(phone);
 		c.setTimesLeft(left);					//实际剩余
@@ -111,9 +112,11 @@ public class JudjeServlet extends HttpServlet {
 			request.setAttribute("msg", "不能修改身份证号，请重新输入");
 			request.getRequestDispatcher("update.jsp").forward(request, response);
 		}*/
+		customerDAOImpl.update(c);
 		response.sendRedirect("queryCustomerServlet.do");
 	}
 
+	//while update, edit first
 	private void edit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");// setCharset

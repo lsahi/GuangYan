@@ -75,15 +75,17 @@ public class FixTimeServlet extends HttpServlet{
 		*/
 	}
 	
+	
+	//查询功能暂定为必须通过输入ID来实现
+	//查询功能是一个单独的模块
+	
 	private void query(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		FixTime t=new FixTime();
 		t.setUserID(request.getParameter("UserID"));
-		t.setUserName(request.getParameter("UserName"));
-		
-		List<FixTime> listFixTime = FixTimeDAOImpl.getForFixTime(t);
+		List<FixTime> listFixTime = fixTimeDAOImpl.getForFixTime(t);
 		request.setAttribute("listCustomer" ,listFixTime);
-		request.getRequestDispatcher("query.jsp").forward(request, response);
+		request.getRequestDispatcher("userinfo.jsp").forward(request, response);
 	}
 
 }

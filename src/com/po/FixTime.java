@@ -59,8 +59,18 @@ public class FixTime {
 	public String getCurrentTime() {
 		return CurrentTime;
 	}
+	//automatically time-setting
+	public void setCurrentTime() {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd-HH:mm:ss");
+		df.format(new Date());
+		this.CurrentTime=df.format(new Date());
+	}
+	//get the object from database
 	public void setCurrentTime(String CurrentTime) {
 		this.CurrentTime=CurrentTime;
+	}
+	public FixTime(){
+		setCurrentTime();
 	}
 
 }

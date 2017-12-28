@@ -37,33 +37,6 @@
       </div>
     </nav><br><br><br><br>
     
-	<div class="center-block" style="width:400px;">
-	<form action="queryCustomerServlet.do" method = "post">
-		<h2 class="form-signin-heading">Please Query</h2>
-		<table>
-		<!-- 不需要输入查询关键词 -->
-			<tr>
-				<td>用户ID(Sno):</td>
-				<td><input type = "text" name = "sno" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
-			</tr>
-			
-			<tr>
-				<td>用户名（Sname）:</td>
-				<td><input type = "text" name = "sname" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sname")%>"></td>
-			</tr>
-			
-			<tr>
-				<td>用户手机（Phone）:</td>
-				<td><input type = "text" name = "phone" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("phone")%>"></td>
-			</tr>
-			
-			<!-- addCustomerServlet.do -->
-			<tr>
-				<td class = "btn btn-link"><a href = "queryCustomerServlet.do">返回</a></td>
-			</tr>
-		</table>
-	</form>
-	</div>
 	<br><br>
 	
 	<!-- 在这里直接输出用户时间信息列表，下面添加返回按钮 -->
@@ -77,26 +50,24 @@
 				<th class="col-md-2">身份证号</th>
 				<th class="col-md-1">姓名</th>
 				<th class="col-md-2">操作类型</th>
+				<th class="col-md-1">剩余使用次数</th>
 				<th class="col-md-2">修改时间</th>
-				<th class="col-md-1">剩余使用次数timesLeft</th>
 			</tr>
 			
 			<%
-				for (Customer c : customers) {
+				for (FixTime f:fixTime){
 			 %>
 			<!-- 现在获取不到TimesLeft和information -->
 			<tr>
-				<th><%=c.getSno() %></th>
-				<th><%=c.getSname() %></th>
-				<th><%=c.getPhone() %></th>
-				<th><%=c.getTimesLeft() %></th>
-				<th><%=c.getInformation() %></th>
-				<th>
-					<a href = "delete.do?sno=<%=c.getSno() %>" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="left" title="你确定要删除?">删除</a>
-					<a href = "edit.do?sno=<%=c.getSno() %>" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="你确定要修改?">修改</a>
-				</th>
+				<th><%=f.getUserID() %></th>
+				<th><%=f.getUserName() %></th>
+				<th><%=f.getOperation() %></th>
+				<th><%=f.getTimesLeft() %></th>
+				<th><%=f.getCurrentTime() %></th>
 			</tr>
-			
+			<tr>
+				<td class = "btn btn-link"><a href = "queryCustomerServlet.do">返回</a></td>
+			</tr>
 			<%} %>
 		</table>
 		

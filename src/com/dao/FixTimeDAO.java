@@ -14,14 +14,9 @@ public interface FixTimeDAO {
 	
 	/*
 	 * save
-	 * while new user added, save
+	 * while new user added or odd user changed, save (add)
 	 */
 	public void save(FixTime fixTime)throws Exception;
-	
-	/*
-	 * while odd user changed, update
-	 */
-	public void update(FixTime fixTime)throws Exception;
 	
 	/*
 	 * Show all operation done by the certain user

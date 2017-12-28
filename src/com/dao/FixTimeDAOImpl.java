@@ -45,12 +45,25 @@ public class FixTimeDAOImpl implements FixTimeDAO{
 		return list;
 	}
 
+	
+	//ADD
 	@Override
 	public void save(FixTime fixTime) throws Exception {
 		// TODO Auto-generated method stub
-		
+		String sql = "insert into timefix values(?, ?, ?, ?, ?, ?)";
+		Connection conn = C3P0.getConnection();
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, fixTime.getTimeName());
+		stmt.setString(2, fixTime.getUserID());
+		stmt.setString(3, fixTime.getUserName());
+		stmt.setString(4, fixTime.getOperation());
+		stmt.setString(5, fixTime.getTimesLeft());
+		stmt.setString(6, fixTime.getCurrentTime());
+		stmt.executeUpdate();
+		conn.close();
 	}
-
+	
+	//search by UserID
 	@Override
 	public List<FixTime> getSigner(String UserID) throws Exception {
 		// TODO Auto-generated method stub
@@ -77,6 +90,8 @@ public class FixTimeDAOImpl implements FixTimeDAO{
 		return list;
 	}
 	
+	//模糊查询
+	//不知道
 	@Override
 	public List<FixTime> getForFixTime(FixTime t) throws Exception{
 		// TODO Auto-generated method stub
@@ -102,9 +117,4 @@ public class FixTimeDAOImpl implements FixTimeDAO{
 		return list;
 	}
 
-	@Override
-	public void update(FixTime fixTime) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
 }

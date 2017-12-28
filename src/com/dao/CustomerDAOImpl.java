@@ -9,6 +9,7 @@ import java.util.List;
 import com.util.C3P0;
 
 import com.po.Customer;
+import com.po.FixTime;
 
 public class CustomerDAOImpl implements CustomerDAO{
 

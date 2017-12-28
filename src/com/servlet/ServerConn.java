@@ -34,22 +34,25 @@ public class ServerConn
             PrintStream ps = new PrintStream(s.getOutputStream());
             // 进行普通IO操作
             ps.println("您好，服务器连接成功");
+            
+            /*
             while(true) {
             	clientServer.add(new ClientServer(s));
                 //未来读取身份证信息
                 //读取到的信息交由身份验证模块处理
                 /*
                  * in compose
-                 * */
+                 * 
                 //close the socket while get a certain token
             }
-
+            */
+            clientServer.add(new ClientServer(s));
         }
     }
     
     class ClientServer {  
         Socket ss;  
-  
+   
         public ClientServer(Socket ss) {  
             // TODO Auto-generated constructor stub  
             this.ss = ss;  

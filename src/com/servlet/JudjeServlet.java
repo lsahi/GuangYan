@@ -55,11 +55,7 @@ public class JudjeServlet extends HttpServlet {
 			} else if ("pwCertificate".equals(methodName)){
 			 	pwCertifacate(request, response);
 			}
-			/*
-			 * 
-			 	}
-			 */
-			
+
 			//add here -pw certification
 		} catch (Exception e) {
 			// TODO: handle exception

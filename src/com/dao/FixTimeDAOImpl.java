@@ -36,6 +36,7 @@ public class FixTimeDAOImpl implements FixTimeDAO{
 			myTime.setUserName(rs.getString("UserName"));
 			myTime.setOperation(rs.getString("Operation"));
 			myTime.setTimesLeft(rs.getString("TimesLeft"));
+			myTime.setCurrentTime(rs.getString("CurrentTime"));
 			
 			list.add(myTime);
 			
@@ -68,6 +69,7 @@ public class FixTimeDAOImpl implements FixTimeDAO{
 			myTime.setUserName(rs.getString("UserName"));
 			myTime.setOperation(rs.getString("Operation"));
 			myTime.setTimesLeft(rs.getString("TimesLeft"));
+			myTime.setCurrentTime(rs.getString("CurrentTime"));
 			
 			list.add(myTime);
 		}
@@ -75,6 +77,7 @@ public class FixTimeDAOImpl implements FixTimeDAO{
 		return list;
 	}
 	
+	@Override
 	public List<FixTime> getForFixTime(FixTime t) throws Exception{
 		// TODO Auto-generated method stub
 		
@@ -86,14 +89,22 @@ public class FixTimeDAOImpl implements FixTimeDAO{
 		rs = stmt.executeQuery();
 		while (rs.next()) {
 			FixTime fix=new FixTime();
-			fix.setSno(rs.getString("Sno"));
-			fix.setSname(rs.getString("Sname"));
-			fix.setPhone(rs.getString("Phone"));
-			fix.setTimesLeft(rs.getInt(4));//colomn4 is timesLeft
-			fix.setInformation(rs.getString("information"));
+			fix.setTimeName(rs.getString("TimeName"));
+			fix.setUserID(t.getUserID());
+			fix.setUserName(rs.getString("UserName"));
+			fix.setOperation(rs.getString("Operation"));
+			fix.setTimesLeft(rs.getString("TimesLeft"));
+			fix.setCurrentTime(rs.getString("CurrentTime"));
+			
 			list.add(fix);
 		}
 		conn.close();
 		return list;
+	}
+
+	@Override
+	public void update(FixTime fixTime) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 }

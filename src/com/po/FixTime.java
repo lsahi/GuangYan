@@ -9,6 +9,7 @@ public class FixTime {
 	String UserName;
 	String Operation;
 	String TimesLeft;
+	String CurrentTime;
 	
 	public String getTimeName(){
 		return TimeName;
@@ -55,5 +56,11 @@ public class FixTime {
 		this.TimesLeft=TimesLeft;
 	}
 	
+	public String getCurrentTime() {
+		return CurrentTime;
+	}
+	public void setCurrentTime(String CurrentTime) {
+		this.CurrentTime=CurrentTime;
+	}
 
 }

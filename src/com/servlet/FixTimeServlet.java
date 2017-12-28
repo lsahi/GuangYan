@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 /* 
  * Can see when the action done
@@ -17,12 +18,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dao.AdminDAOImpl;
 import com.dao.CustomerDAOImpl;
+import com.dao.FixTimeDAOImpl;
 import com.po.Admin;
 import com.po.Customer;
+import com.po.FixTime;
 
 public class FixTimeServlet extends HttpServlet{
 	
 	CustomerDAOImpl customerDAOImpl = new CustomerDAOImpl();
+	FixTimeDAOImpl fixTimeDAOImpl = new FixTimeDAOImpl();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -69,6 +73,17 @@ public class FixTimeServlet extends HttpServlet{
 			response.sendRedirect("index.jsp");
 		}
 		*/
+	}
+	
+	private void query(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		FixTime t=new FixTime();
+		t.setUserID(request.getParameter("UserID"));
+		t.setUserName(request.getParameter("UserName"));
+		
+		List<FixTime> listFixTime = FixTimeDAOImpl.getForFixTime(t);
+		request.setAttribute("listCustomer" ,listFixTime);
+		request.getRequestDispatcher("query.jsp").forward(request, response);
 	}
 
 }

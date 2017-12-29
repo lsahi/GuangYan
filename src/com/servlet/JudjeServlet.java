@@ -51,6 +51,8 @@ public class JudjeServlet extends HttpServlet {
 				add(request, response);
 			} else if ("queryCustomerServlet".equals(methodName)) {
 				query(request, response);
+			} else if ("queryChangeInfo".equals(methodName)) { //ChangeInfo
+				queryChangeInfo(request, response);
 			} else if ("delete".equals(methodName)) {
 				delete(request, response);
 			} else if ("edit".equals(methodName)) {
@@ -66,6 +68,16 @@ public class JudjeServlet extends HttpServlet {
 			// TODO: handle exception
 			response.sendRedirect("index.jsp");
 		}
+	}
+	
+	private void queryChangeInfo(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		FixTime f= new FixTime();
+		f.setUserID(request.getParameter("UserID"));
+		List<FixTime> listFixTime=fixTimeDAOImpl.getForFixTime(f);
+		request.setAttribute("listFixTime", listFixTime);
+		System.out.println("give out list");
+		request.getRequestDispatcher("changeinfo.jsp").forward(request, response);
 	}
 	
 	private void delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -230,7 +242,4 @@ public class JudjeServlet extends HttpServlet {
 		
 	}
 }
-
-
-
 

@@ -37,6 +37,22 @@
       </div>
     </nav><br><br><br><br>
     
+	<div class="center-block" style="width:400px;">
+	<form action="queryChangeInfo.do" method = "post">
+		<h2 class="form-signin-heading">Please Query</h2>
+		<table>
+			<tr>
+				<td>用户ID(Sno):</td>
+				<td><input type = "text" name = "UserID" class = "form-control" value = "<%=request.getParameter("UserID") == null ? "" : request.getParameter("UserID")%>"></td>
+			</tr>
+			
+			<!-- addCustomerServlet.do -->
+			<tr>
+				<td><input type = "submit" value = "查询" class="btn btn-primary"></td>
+			</tr>
+		</table>
+	</form>
+	</div>
 	<br><br>
 	
 	<!-- 在这里直接输出用户时间信息列表，下面添加返回按钮 -->
@@ -65,14 +81,21 @@
 				<th><%=f.getTimesLeft() %></th>
 				<th><%=f.getCurrentTime() %></th>
 			</tr>
-			<tr>
-				<td class = "btn btn-link"><a href = "queryCustomerServlet.do">返回</a></td>
-			</tr>
+			
 			<%} %>
 		</table>
 		
 	<%} %>
-
+	<div class="center-block" style="width:400px;">
+	<form action="queryCustomerServlet.do" method = "post">
+		<table>
+			<!-- addCustomerServlet.do -->
+			<tr>
+				<td><input type = "submit" value = "返回" class="btn btn-primary"></td>
+			</tr>
+		</table>
+	</form>
+	</div>
   </body>
   
 </html>

@@ -95,17 +95,16 @@ public class FixTimeDAOImpl implements FixTimeDAO{
 	@Override
 	public List<FixTime> getForFixTime(FixTime t) throws Exception{
 		// TODO Auto-generated method stub
-		
 		List<FixTime> list = new ArrayList<FixTime>();
 		Connection conn = C3P0.getConnection();
-		String sql = "select * from fixtime where UserID like ?";
+		String sql = "select * from timefix where UserID like ?";
 		stmt = conn.prepareStatement(sql);
 		stmt.setString(1, t.getUserID() == null ? "%%" : "%" + t.getUserID() + "%");
 		rs = stmt.executeQuery();
 		while (rs.next()) {
 			FixTime fix=new FixTime();
 			fix.setTimeName(rs.getString("TimeName"));
-			fix.setUserID(t.getUserID());
+			fix.setUserID(rs.getString("UserID"));
 			fix.setUserName(rs.getString("UserName"));
 			fix.setOperation(rs.getString("Operation"));
 			fix.setTimesLeft(rs.getString("TimesLeft"));

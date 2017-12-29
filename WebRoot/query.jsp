@@ -63,9 +63,17 @@
 		</table>
 	</form>
 	</div>
-	<br><br>
-	
-	
+	<div class="center-block" style="width:400px;">
+	<form action="queryChangeInfo.do" method = "post">
+		<table>
+			<!-- addCustomerServlet.do -->
+			<tr>
+				<td><input type = "submit" value = "查看历史操作记录" class="btn btn-primary"></td>
+			</tr>
+		</table>
+	</form>
+	</div>
+	<br>
 	<%
 		List<Customer> customers = (List<Customer>) request.getAttribute("listCustomer");
 	 	if (customers != null && customers.size() > 0) {
@@ -101,7 +109,6 @@
 		</table>
 		
 	<%} %>
-
   </body>
   
 </html>

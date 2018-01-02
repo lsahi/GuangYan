@@ -50,6 +50,15 @@
 			<tr>
 				<td><input type = "submit" value = "查询" class="btn btn-primary"></td>
 			</tr>
+			
+		</table>
+	</form>
+	<form action="queryCustomerServlet.do" method = "post">
+		<table>
+			<!-- addCustomerServlet.do -->
+			<tr>
+				<td><input type = "submit" value = "返回" class="btn btn-primary"></td>
+			</tr>
 		</table>
 	</form>
 	</div>
@@ -63,11 +72,11 @@
 		
 		<table class = "table table-bordered table-hover">
 			<tr>
-				<th class="col-md-2">身份证号</th>
-				<th class="col-md-1">姓名</th>
+				<th class="col-md-3">身份证号</th>
+				<th class="col-md-2">姓名</th>
 				<th class="col-md-2">操作类型</th>
-				<th class="col-md-1">剩余使用次数</th>
-				<th class="col-md-2">修改时间</th>
+				<th class="col-md-2">本次操作后剩余使用次数</th>
+				<th class="col-md-3">修改时间</th>
 			</tr>
 			
 			<%
@@ -87,14 +96,6 @@
 		
 	<%} %>
 	<div class="center-block" style="width:400px;">
-	<form action="queryCustomerServlet.do" method = "post">
-		<table>
-			<!-- addCustomerServlet.do -->
-			<tr>
-				<td><input type = "submit" value = "返回" class="btn btn-primary"></td>
-			</tr>
-		</table>
-	</form>
 	</div>
   </body>
   

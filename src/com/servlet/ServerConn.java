@@ -35,17 +35,6 @@ public class ServerConn
             // 进行普通IO操作
             ps.println("您好，服务器连接成功");
             
-            /*
-            while(true) {
-            	clientServer.add(new ClientServer(s));
-                //未来读取身份证信息
-                //读取到的信息交由身份验证模块处理
-                /*
-                 * in compose
-                 * 
-                //close the socket while get a certain token
-            }
-            */
             clientServer.add(new ClientServer(s));
         }
     }
@@ -61,7 +50,23 @@ public class ServerConn
             	BufferedReader br = new BufferedReader(new InputStreamReader(ss.getInputStream()));
                 String line = br.readLine();
                 System.out.println("来自客户端的数据：" + line);
-                // 将流和socket关掉，不关掉客户端在未接受到消息的时候会断开连接  
+                
+                //String sepereating
+                String [] arr = line.split("\\s+");
+                for(String myarr : arr){
+                    System.out.println(myarr);
+                }
+                //arr0 is ID, arr1 is pw;
+                
+                IdIsInDB certificantID=new IdIsInDB();
+                try {
+					certificantID.idInDB(arr[0],arr[1]);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+                
             } catch (IOException e) {  
                 // TODO Auto-generated catch block  
                 e.printStackTrace();  

@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dao.AdminDAOImpl;
 import com.dao.CustomerDAOImpl;
@@ -16,9 +17,11 @@ import com.po.Customer;
 import com.po.FixTime;
 
 public class JudjeServlet extends HttpServlet {
+	
+	public String thisAdmin;
+	
 	private static final long serialVersionUID = 1L;
-    
-	String thisAdmin;
+	
 	CustomerDAOImpl customerDAOImpl = new CustomerDAOImpl();
 	FixTimeDAOImpl fixTimeDAOImpl=new FixTimeDAOImpl();
 	
@@ -237,9 +240,29 @@ public class JudjeServlet extends HttpServlet {
 			request.setAttribute("msg", "’À∫≈”Î√‹¬Î"+"≤ª∆•≈‰£¨«Î÷ÿ–¬ ‰»Î");
 			request.getRequestDispatcher("loginTest.jsp").forward(request, response);
 		}else {
+			/*
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("login-user", user);
+			
+			*/
 			request.getRequestDispatcher("index.jsp").forward(request, response);
+			
 		}
 		
 	}
 }
 
+/*
+<!-- ≈‰÷√µ«¬Ωπ˝¬À∆˜ -->
+<filter>
+ <filter-name>FilterServlet</filter-name>
+ <filter-class>com.servlet.FilterServlet</filter-class>
+</filter>
+
+<filter-mapping>
+ <filter-name>FilterServlet</filter-name>
+ <url-pattern>/GuangyanAdmin/add.jsp</url-pattern>
+ 
+</filter-mapping>
+*/

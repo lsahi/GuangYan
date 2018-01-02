@@ -74,6 +74,7 @@
 	</form>
 	</div>
 	<br>
+	
 	<%
 		List<Customer> customers = (List<Customer>) request.getAttribute("listCustomer");
 	 	if (customers != null && customers.size() > 0) {
@@ -94,7 +95,7 @@
 			 %>
 			<!-- 现在获取不到TimesLeft和information -->
 			<tr>
-				<th><%=c.getSno() %></th>
+				<th class = "btn btn-link"><a href = "queryChangeInfo.do?UserID=<%=c.getSno()%>"><%=c.getSno() %></a></th>
 				<th><%=c.getSname() %></th>
 				<th><%=c.getPhone() %></th>
 				<th><%=c.getTimesLeft() %></th>

@@ -19,9 +19,6 @@ public class ServerConn
     }  
     public void initServerConn()throws IOException
     {
-        //打印本机的IP地址
-        InetAddress address=InetAddress.getLocalHost();
-        System.out.println("本机的IP地址是"+address.getHostAddress());
         //
         // 创建一个ServerSocket，用于监听客户端Socket的连接请求
         ServerSocket ss = new ServerSocket(30000);

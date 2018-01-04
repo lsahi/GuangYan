@@ -1,5 +1,6 @@
 <%@page import="com.po.FixTime"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
+<%@ page session="true" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -37,7 +38,7 @@
       </div>
     </nav><br><br><br><br>
     
-	<div class="center-block" style="width:400px;">
+	<div class="center-block" style="width:400px">
 	<form action="queryChangeInfo.do" method = "post">
 		<h2 class="form-signin-heading">Please Query</h2>
 		<table>
@@ -45,19 +46,20 @@
 				<td>用户ID(Sno):</td>
 				<td><input type = "text" name = "UserID" class = "form-control" value = "<%=request.getParameter("UserID") == null ? "" : request.getParameter("UserID")%>"></td>
 			</tr>
-			
+
 			<!-- addCustomerServlet.do -->
 			<tr>
-				<td><input type = "submit" value = "查询" class="btn btn-primary"></td>
+				<td><input type = "submit" value = "查询" class="btn btn-info btn-block"></td>
 			</tr>
-			
+
 		</table>
 	</form>
+	<br>
 	<form action="queryCustomerServlet.do" method = "post">
 		<table>
 			<!-- addCustomerServlet.do -->
 			<tr>
-				<td><input type = "submit" value = "返回" class="btn btn-primary"></td>
+				<td><input type = "submit" value = "返回" class="btn btn-primary btn-block"></td>
 			</tr>
 		</table>
 	</form>
@@ -75,8 +77,8 @@
 				<th class="col-md-3">身份证号</th>
 				<th class="col-md-2">姓名</th>
 				<th class="col-md-2">操作类型</th>
-				<th class="col-md-2">本次操作后剩余使用次数</th>
-				<th class="col-md-3">修改时间</th>
+				<th class="col-md-1">本次操作后剩余使用次数</th>
+				<th class="col-md-4">修改时间</th>
 			</tr>
 			
 			<%
@@ -88,7 +90,7 @@
 				<th><%=f.getUserName() %></th>
 				<th><%=f.getOperation() %></th>
 				<th><%=f.getTimesLeft() %></th>
-				<th><%=f.getCurrentTime() %></th>
+				<th><%=f.getTimeName() %></th>
 			</tr>
 			
 			<%} %>

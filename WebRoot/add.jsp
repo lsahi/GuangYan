@@ -1,5 +1,6 @@
 <%@page import="com.po.Customer"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
+<%@ page session="true" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -74,7 +75,7 @@
 			
 			<!-- addCustomerServlet.do -->
 			<tr>	
-				<td><input type = "submit" value = "添加" class="btn btn-primary"></td>
+				<td><input type = "submit" value = "添加" class="btn btn-primary btn-block"></td>
 				<td class = "btn btn-link"><a href = "queryCustomerServlet.do">返回</a></td>
 			</tr>
 		</table>

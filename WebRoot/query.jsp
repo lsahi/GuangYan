@@ -55,13 +55,14 @@
 				<td>用户手机（Phone）:</td>
 				<td><input type = "text" name = "phone" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("phone")%>"></td>
 			</tr>
-			
+			<br>
 			<!-- addCustomerServlet.do -->
 			<tr>
 				<td><input type = "submit" value = "查询" class="btn btn-primary"></td>
 			</tr>
 		</table>
 	</form>
+	<br>
 	</div>
 	<div class="center-block" style="width:400px;">
 	<form action="queryChangeInfo.do" method = "post">
@@ -95,14 +96,14 @@
 			 %>
 			<!-- 现在获取不到TimesLeft和information -->
 			<tr>
-				<th class = "btn btn-link"><a href = "queryChangeInfo.do?UserID=<%=c.getSno()%>"><%=c.getSno() %></a></th>
+				<th><a href = "queryChangeInfo.do?UserID=<%=c.getSno()%>" style="color:#595959"><%=c.getSno() %></a></th>
 				<th><%=c.getSname() %></th>
 				<th><%=c.getPhone() %></th>
 				<th><%=c.getTimesLeft() %></th>
 				<th><%=c.getInformation() %></th>
 				<th>
-					<a href = "delete.do?sno=<%=c.getSno() %>" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="left" title="你确定要删除?">删除</a>
-					<a href = "edit.do?sno=<%=c.getSno() %>" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="你确定要修改?">修改</a>
+					<a href = "delete.do?sno=<%=c.getSno() %>" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="left" title="你确定要删除?">删除</a>
+					<a href = "edit.do?sno=<%=c.getSno() %>" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="你确定要修改?">修改</a>
 				</th>
 			</tr>
 			
@@ -110,6 +111,7 @@
 		</table>
 		
 	<%} %>
+	<a href = "queryChangeInfo.do" type="button" class="btn btn-success btn-block btn-lg" >按时间显示全部历史操作记录</a>
   </body>
   
 </html>

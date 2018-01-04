@@ -38,6 +38,12 @@ public class JudjeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+        HttpSession session=request.getSession(false); 
+        if(session==null)  
+        {  
+            response.sendRedirect("loginTest.jsp");  
+            return ;  
+        }  
 		doPost(request, response);
 	}
 
@@ -168,6 +174,8 @@ public class JudjeServlet extends HttpServlet {
 
 	private void query(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		//session certifacation 
+		
 		Customer c = new Customer();
 		c.setSno(request.getParameter("sno"));
 		c.setSname(request.getParameter("sname"));
@@ -238,6 +246,9 @@ public class JudjeServlet extends HttpServlet {
 		thisAdmin=request.getParameter("user");
 		if(!ad.certificate(a)) {
 			request.setAttribute("msg", "账号与密码"+"不匹配，请重新输入");
+			
+			//new session here
+			request.getSession().setAttribute("user", a);  
 			request.getRequestDispatcher("loginTest.jsp").forward(request, response);
 		}else {
 			/*

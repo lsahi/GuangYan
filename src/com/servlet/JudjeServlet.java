@@ -85,7 +85,6 @@ public class JudjeServlet extends HttpServlet {
 		f.setUserID(request.getParameter("UserID"));
 		List<FixTime> listFixTime=fixTimeDAOImpl.getForFixTime(f);
 		request.setAttribute("listFixTime", listFixTime);
-		System.out.println("give out list");
 		request.getRequestDispatcher("changeinfo.jsp").forward(request, response);
 	}
 	

@@ -49,22 +49,15 @@
 
 			<!-- addCustomerServlet.do -->
 			<tr>
-				<td><input type = "submit" value = "查询" class="btn btn-info btn-block"></td>
+				<td><input type = "submit" value = "查询" class="col-md-3 btn btn-info btn-block"></td>
+				<td><a href = "queryCustomerServlet.do" type="button" class="col-md-3 btn btn-warning btn-block" >返回</a></td>
 			</tr>
-
+			
 		</table>
 	</form>
 	<br>
-	<form action="queryCustomerServlet.do" method = "post">
-		<table>
-			<!-- addCustomerServlet.do -->
-			<tr>
-				<td><input type = "submit" value = "返回" class="btn btn-primary btn-block"></td>
-			</tr>
-		</table>
-	</form>
 	</div>
-	<br><br>
+	<br>
 	
 	<!-- 在这里直接输出用户时间信息列表，下面添加返回按钮 -->
 	<%

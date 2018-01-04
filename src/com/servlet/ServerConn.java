@@ -49,7 +49,6 @@ public class ServerConn
             try {  
             	BufferedReader br = new BufferedReader(new InputStreamReader(ss.getInputStream()));
                 String line = br.readLine();
-                System.out.println("来自客户端的数据：" + line);
                 
                 //String sepereating
                 String [] arr = line.split("\\s+");

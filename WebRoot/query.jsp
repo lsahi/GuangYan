@@ -37,7 +37,7 @@
       </div>
     </nav><br><br><br><br>
     
-	<div class="center-block" style="width:400px;">
+	<div class="center-block" style="width:400px">
 	<form action="queryCustomerServlet.do" method = "post">
 		<h2 class="form-signin-heading">Please Query</h2>
 		<table>
@@ -75,7 +75,9 @@
 	</form>
 	</div>
 	<br>
-	
+	<div style="margin:0 auto;width:400px">
+		<a href = "queryChangeInfo.do" type="button" class="btn btn-success btn-block btn-lg" >按时间显示全部历史操作记录</a>
+	</div>
 	<%
 		List<Customer> customers = (List<Customer>) request.getAttribute("listCustomer");
 	 	if (customers != null && customers.size() > 0) {
@@ -111,7 +113,7 @@
 		</table>
 		
 	<%} %>
-	<a href = "queryChangeInfo.do" type="button" class="btn btn-success btn-block btn-lg" >按时间显示全部历史操作记录</a>
+	
   </body>
   
 </html>

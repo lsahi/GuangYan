@@ -1,11 +1,12 @@
 package com.dao;
 
 import java.util.List;
-
+import java.util.ListIterator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.util.C3P0;
@@ -32,7 +33,7 @@ public class FixTimeDAOImpl implements FixTimeDAO{
 		while(rs.next()) {
 			FixTime myTime=new FixTime();
 			myTime.setTimeName(rs.getString("TimeName"));
-			myTime.setUserID(rs.getString("UserID"));
+			myTime.setUserID(rs.getString("UserID"));	
 			myTime.setUserName(rs.getString("UserName"));
 			myTime.setOperation(rs.getString("Operation"));
 			myTime.setTimesLeft(rs.getString("TimesLeft"));
@@ -45,7 +46,8 @@ public class FixTimeDAOImpl implements FixTimeDAO{
 		return list;
 	}
 
-	
+
+
 	//ADD
 	@Override
 	public void save(FixTime fixTime) throws Exception {

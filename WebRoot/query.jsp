@@ -39,45 +39,35 @@
     
 	<div class="center-block" style="width:400px">
 	<form action="queryCustomerServlet.do" method = "post">
-		<h2 class="form-signin-heading">Please Query</h2>
 		<table>
 			<tr>
-				<td>用户ID(Sno):</td>
 				<td><input type = "text" name = "sno" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
 			</tr>
 			
 			<tr>
 				<td>用户名（Sname）:</td>
+				<td>用户名（Sname）:             </td>
 				<td><input type = "text" name = "sname" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sname")%>"></td>
 			</tr>
 			
 			<tr>
-				<td>用户手机（Phone）:</td>
+				<td>用户手机（Phone）              :</td>
 				<td><input type = "text" name = "phone" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("phone")%>"></td>
 			</tr>
 			<br>
 			<!-- addCustomerServlet.do -->
 			<tr>
 				<td><input type = "submit" value = "查询" class="btn btn-primary"></td>
+				<td><input type = "submit" value = "查询" class="btn btn-info btn-block"></td>
 			</tr>
 		</table>
 	</form>
 	<br>
 	</div>
-	<div class="center-block" style="width:400px;">
-	<form action="queryChangeInfo.do" method = "post">
-		<table>
-			<!-- addCustomerServlet.do -->
-			<tr>
-				<td><input type = "submit" value = "查看历史操作记录" class="btn btn-primary"></td>
-			</tr>
-		</table>
-	</form>
-	</div>
-	<br>
 	<div style="margin:0 auto;width:400px">
-		<a href = "queryChangeInfo.do" type="button" class="btn btn-success btn-block btn-lg" >按时间显示全部历史操作记录</a>
+		<a href = "queryChangeInfo.do" type="button" class="btn btn-success btn-block" >按时间显示全部历史操作记录</a>
 	</div>
+	<br>
 	<%
 		List<Customer> customers = (List<Customer>) request.getAttribute("listCustomer");
 	 	if (customers != null && customers.size() > 0) {

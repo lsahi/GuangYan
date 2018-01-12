@@ -40,7 +40,6 @@ public class SocketListener implements ServletContextListener {
         	InetAddress address = null;
 			try {
 				address = InetAddress.getLocalHost();
-				System.out.println("Server IP:   "+address.getHostAddress());
 			} catch (UnknownHostException e1) {
 				// TODO Auto-generated catch block
 				//IP: 192.168.56.1
@@ -56,7 +55,6 @@ public class SocketListener implements ServletContextListener {
                  }
                  
                  //----------------------¿ªÊ¼Ö´ÐÐ---------------------
-                 System.out.println("TIME:"+System.currentTimeMillis());
                  try {
 					ServerConn serverConnect=new ServerConn();
 					serverConnect.initServerConn();

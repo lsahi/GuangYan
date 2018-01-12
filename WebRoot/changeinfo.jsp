@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>光盐管理系统</title>
+    <title>光盐管理系统-查看操作</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="bootstrap/js/jquery/2.0.0/jquery.min.js"></script>
@@ -32,7 +32,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="queryCustomerServlet.do">查询</a></li>
-            <li><a href="add.jsp">添加</a></li>
+            <!-- 如果身份证系统可用，删除此行 --><li><a href="add.jsp">添加</a></li>
           </ul> 
         </div>
       </div>
@@ -40,7 +40,7 @@
     
 	<div class="center-block" style="width:400px">
 	<form action="queryChangeInfo.do" method = "post">
-		<h2 class="form-signin-heading">Please Query</h2>
+		<h2 class="form-signin-heading">操作记录</h2>
 		<table>
 			<tr>
 				<td>用户ID(Sno):</td>

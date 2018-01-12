@@ -20,26 +20,19 @@
   </head>
   
   <body>
-    <img src="bootstrap/1.jpg" class = "bg"> 
 
     <!-- 最上面的导航栏 -->
   	<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          	功能按钮
-          </button>
           <a class="navbar-brand" href="index.jsp">光盐管理系统</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="queryCustomerServlet.do">查询已存在用户</a></li>
-            <!-- 如果身份证系统可用，删除此行 --><li><a href="add.jsp">添加新用户</a></li>
-          </ul> 
         </div>
       </div>
     </nav>
 
     <br><br><br><br>
+    
+    <h2 class="form-signin-heading">消费成功,本次消费后剩余次数全部用尽，提前提示用户充值</h2>
+    <a href = "queryCustomerServlet.do" type="button" class="col-md-3 btn btn-warning btn-block btn-lg" >返回</a>
   </body>
 </html>

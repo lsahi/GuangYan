@@ -32,7 +32,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="queryCustomerServlet.do">查询</a></li>
-            <li><a href="add.jsp">添加</a></li>
+            <!-- 如果身份证系统可用，删除此行 --><li><a href="add.jsp">添加</a></li>
           </ul> 
         </div>
       </div>

@@ -87,6 +87,8 @@ public class JudjeServlet extends HttpServlet {
 				edit(request, response);
 			} else if ("update".equals(methodName)) {
 				update(request, response);
+			} else if ("charge".equals(methodName)) {
+				charge(request, response);
 			} 
 
 			//add here -pw certification
@@ -307,18 +309,50 @@ public class JudjeServlet extends HttpServlet {
 		}
 		
 	}
+	
+	//消费按钮
+	private void charge(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		FixTime fix=new FixTime();
+		Customer c = new Customer();
+		
+		fix.setTimeName(fix.getCurrentTime()+" - "+thisAdmin);
+		String sno = request.getParameter("sno");
+		fix.setUserID(sno);
+		
+		//timeused
+		c=customerDAOImpl.getSigner(sno);
+		String myTime=c.getTimesLeft();
+		int time = Integer.valueOf(myTime).intValue();
+
+		//get timesLeft
+		if(time>0) {
+			boolean flag=true;
+			if(time==1) {
+				flag=false;//System.out.println(); 用户仅剩1次，提醒充值
+			}
+			
+			c.setTimesLeft(time-1);
+			fix.setOperation("消费");
+			fix.setTimesLeft((time-1)+"");
+			fix.setCurrentTime();
+			customerDAOImpl.update(c);
+			fixTimeDAOImpl.save(fix);
+			
+			if(flag==true) {			
+				request.getRequestDispatcher("chargeSuccess.jsp").forward(request, response);
+			}else {
+				request.getRequestDispatcher("charge1.jsp").forward(request, response);
+			}
+			
+		}else {
+			c.setTimesLeft(time);
+			customerDAOImpl.update(c);
+			fix.setOperation("余额不足，消费失败");
+			fix.setTimesLeft(time+"");
+			fix.setCurrentTime();
+			fixTimeDAOImpl.save(fix);
+			request.getRequestDispatcher("chargeFailed.jsp").forward(request, response);
+		}
+	}
 }
-
-/*
-<!-- 配置登陆过滤器 -->
-<filter>
- <filter-name>FilterServlet</filter-name>
- <filter-class>com.servlet.FilterServlet</filter-class>
-</filter>
-
-<filter-mapping>
- <filter-name>FilterServlet</filter-name>
- <url-pattern>/GuangyanAdmin/add.jsp</url-pattern>
- 
-</filter-mapping>
-*/

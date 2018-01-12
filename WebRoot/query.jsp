@@ -4,7 +4,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>光盐管理系统</title>
+    <title>光盐管理系统-用户信息</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="bootstrap/js/jquery/2.0.0/jquery.min.js"></script>
@@ -31,7 +31,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="queryCustomerServlet.do">查询</a></li>
-            <li><a href="add.jsp">添加</a></li>
+            <!-- 如果身份证系统可用，删除此行 --><li><a href="add.jsp">添加</a></li>
           </ul> 
         </div>
       </div>
@@ -39,25 +39,24 @@
     
 	<div class="center-block" style="width:400px">
 	<form action="queryCustomerServlet.do" method = "post">
+		<h2 class="form-signin-heading">用户信息</h2>
 		<table>
 			<tr>
+				<td>身份证:</td>
 				<td><input type = "text" name = "sno" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
 			</tr>
 			
 			<tr>
-				<td>用户名（Sname）:</td>
-				<td>用户名（Sname）:             </td>
+				
+				<td>用户名:</td>
 				<td><input type = "text" name = "sname" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sname")%>"></td>
 			</tr>
 			
 			<tr>
-				<td>用户手机（Phone）              :</td>
+				<td>用户手机:</td>
 				<td><input type = "text" name = "phone" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("phone")%>"></td>
 			</tr>
-			<br>
-			<!-- addCustomerServlet.do -->
 			<tr>
-				<td><input type = "submit" value = "查询" class="btn btn-primary"></td>
 				<td><input type = "submit" value = "查询" class="btn btn-info btn-block"></td>
 			</tr>
 		</table>
@@ -75,12 +74,13 @@
 		
 		<table class = "table table-bordered table-hover">
 			<tr>
-				<th class="col-md-2">身份证号Sno</th>
-				<th class="col-md-1">姓名Sname</th>
-				<th class="col-md-2">电话Phone</th>
-				<th class="col-md-1">剩余使用次数timesLeft</th>
-				<th class="col-md-2">备注information</th>
-				<th class="col-md-3">信息Update/Delete</th>
+				<th class="col-md-2">身份证号</th>
+				<th class="col-md-1">姓名</th>
+				<th class="col-md-2">手机</th>
+				<th class="col-md-1">剩余使用次数</th>
+				<th class="col-md-2">备注</th>
+				<!-- 如果身份证系统可用，删除此行 --><th class="col-md-1">消费</th>
+				<th class="col-md-2">删除或修改</th>
 			</tr>
 			
 			<%
@@ -93,9 +93,11 @@
 				<th><%=c.getPhone() %></th>
 				<th><%=c.getTimesLeft() %></th>
 				<th><%=c.getInformation() %></th>
+				<!-- 如果身份证系统可用，删除此行 --><th><a href = "charge.do?sno=<%=c.getSno() %>" type="button" class="btn btn-info" data-toggle="tooltip" data-placement="middle" title="你确定要消费?">消费</a></th>
 				<th>
 					<a href = "delete.do?sno=<%=c.getSno() %>" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="left" title="你确定要删除?">删除</a>
 					<a href = "edit.do?sno=<%=c.getSno() %>" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="你确定要修改?">修改</a>
+
 				</th>
 			</tr>
 			

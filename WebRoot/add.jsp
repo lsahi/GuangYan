@@ -1,4 +1,4 @@
-<%@page import="com.po.Customer"%>
+<%@ page import="com.po.Customer"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
 <%@ page session="true" %>
 

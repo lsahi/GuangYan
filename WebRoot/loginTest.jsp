@@ -20,20 +20,19 @@
   </head>
   
   <body>
-    <img src="bootstrap/1.jpg" class = "bg"> 
+    <img src="bootstrap/1.png" class = "bg"> 
 
     <!-- 最上面的导航栏 -->
   	<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-
           <a class="navbar-brand" href="loginTest.jsp">光盐管理系统</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
         </div>
       </div>
     </nav>
-    
+    </br></br>
     <!-- 登陆  -->
 	<div class="center-block" style="width:400px;">
 	<form name="loginTest" action="pwCertificate.do" method = "post">

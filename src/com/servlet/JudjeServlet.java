@@ -90,6 +90,10 @@ public class JudjeServlet extends HttpServlet {
 			} else if ("charge".equals(methodName)) {
 				charge(request, response);
 			} 
+			//add
+			else if ("add".equals(methodName)) {
+				charge(request, response);
+			} 
 
 			//add here -pw certification
 		} catch (Exception e) {

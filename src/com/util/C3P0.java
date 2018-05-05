@@ -17,7 +17,7 @@ public class C3P0 {
 	 * DRIVERCLASS=
 	 * sql=默认语句->查询整个表
 	*/
-	private static final String URL = "jdbc:mysql://localhost/app?useSSL=false";
+	private static final String URL = "jdbc:mysql://localhost/app";
 	private static final String USER = "root";
 	private static final String PASSWORD = "123456";
 	private static final String DRIVERCLASS = "com.mysql.jdbc.Driver";

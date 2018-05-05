@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>光盐用户管理系统</title>
+    <title>校园召集 注册界面</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="bootstrap/js/jquery/2.0.0/jquery.min.js"></script>
@@ -27,13 +27,7 @@
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           </button>
-          <a class="navbar-brand" href="index.jsp">光盐用户管理系统</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="queryCustomerServlet.do">查询</a></li>
-            <li><a href="add.jsp">添加</a></li>
-          </ul> 
+          <a class="navbar-brand" href="add.jsp">用户注册</a>
         </div>
       </div>
     </nav>
@@ -53,18 +47,25 @@
 	<form action="addCustomerServlet.do" method = "post">
 		<h2 class="form-signin-heading">添加用户</h2>
 		<table>
-			<tr>
-				<td>身份证Sno:</td>
-				<td><input type = "text" name = "sno" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
-			</tr>
+			
 			
 			<tr>
-				<td>姓名Sname:</td>
+				<td>昵称Sname:</td>
 				<td><input type = "text" name = "sname" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sname")%>"></td>
 			</tr>
 			
 			<tr>
-				<td>电话Phone:</td>
+				<td>邮箱Smail:</td>
+				<td><input type = "text" name = "sno" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("smail")%>"></td>
+			</tr>
+			
+			<tr>
+				<td>密码Spw:</td>
+				<td><input type = "text" name = "sno" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
+			</tr>
+			
+			<tr>
+				<td>手机Phone:</td>
 				<td><input type = "text" name = "phone" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("phone")%>"></td>
 			</tr>
 			
@@ -73,12 +74,24 @@
 				<td><input type = "text" name = "information" class = "form-control" value = "无备注"></td>
 			</tr>
 			
+			
 			<!-- addCustomerServlet.do -->
-			<tr>	
+			
+		</table>
+		<tr>
+			兴趣爱好:</br>
+			    <input type="checkbox" id="Checkbox1" value="1">大创       	 	 <input type="checkbox" id="Checkbox1" value="2">建模</br>
+			    <input type="checkbox" id="Checkbox1" value="3">专利       		 <input type="checkbox" id="Checkbox1" value="4">自习</br></br>
+		</tr>
+		<tr>
+			性别:</br>
+				<input type="radio" name="optionsRadios" id="Radio1" value="option1" checked> 男
+				<input type="radio" name="optionsRadios" id="Radio1" value="option2" checked> 女
+		</tr>
+		<tr>	
 				<td><input type = "submit" value = "添加" class="btn btn-primary btn-block"></td>
 				<td class = "btn btn-link"><a href = "queryCustomerServlet.do">返回</a></td>
-			</tr>
-		</table>
+		</tr>
 	</form>
 	</div>
 	<br><br>

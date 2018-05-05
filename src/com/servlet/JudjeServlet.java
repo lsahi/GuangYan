@@ -38,14 +38,7 @@ public class JudjeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/*
-        HttpSession session=request.getSession(false); 
-        if(session==null)  
-        {  
-            response.sendRedirect("loginTest.jsp");  
-            return ;  
-        }  
-        */
+
 		doPost(request, response);
 	}
 
@@ -53,27 +46,10 @@ public class JudjeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=null;
 		request.setCharacterEncoding("utf-8");// setCharset
 		String servletPath = request.getServletPath();
 		String methodName = servletPath.substring(1,servletPath.length()-3);
-		try {
-			if ("pwCertificate".equals(methodName)){
-			 	pwCertifacate(request, response);
-			}else if(methodName==null) {
-				session=null;
-			}
-		}catch (Exception e) {
-				// TODO: handle exception
-				response.sendRedirect("loginTest.jsp");
-		}
 		
-        session=request.getSession(false); 
-        if(session==null)  
-        {  
-            response.sendRedirect("loginTest.jsp");  
-            return ;  
-        }
 		try {
 			if ("addCustomerServlet".equals(methodName)) {
 				add(request, response);
@@ -89,12 +65,11 @@ public class JudjeServlet extends HttpServlet {
 				update(request, response);
 			} else if ("charge".equals(methodName)) {
 				charge(request, response);
-			} 
-			//add
-			else if ("add".equals(methodName)) {
+			} else if ("add".equals(methodName)) {
 				charge(request, response);
-			} 
-
+			} else if ("pwCertificate".equals(methodName)){
+			 	pwCertifacate(request, response);
+			}
 			//add here -pw certification
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -103,15 +78,6 @@ public class JudjeServlet extends HttpServlet {
 	}
 	
 	private void queryChangeInfo(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		
-		//session check
-        HttpSession session=request.getSession(false); 
-        if(session==null)  
-        {  
-            response.sendRedirect("loginTest.jsp");  
-            return ;  
-        }
-        
 		FixTime f= new FixTime();
 		f.setUserID(request.getParameter("UserID"));
 		List<FixTime> listFixTime=fixTimeDAOImpl.getForFixTime(f);
@@ -196,14 +162,7 @@ public class JudjeServlet extends HttpServlet {
 	private void edit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		
-		//session check
-        HttpSession session=request.getSession(false); 
-        if(session==null)  
-        {  
-            response.sendRedirect("loginTest.jsp");  
-            return ;  
-        }
-        
+
 		request.setCharacterEncoding("utf-8");// setCharset
 		String sno = request.getParameter("sno");
 		Customer customer = customerDAOImpl.getSigner(sno);
@@ -212,15 +171,6 @@ public class JudjeServlet extends HttpServlet {
 	}
 
 	private void query(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		//session certifacation 
-		//session check
-        HttpSession session=request.getSession(false); 
-        if(session==null)  
-        {  
-            response.sendRedirect("loginTest.jsp");  
-            return ;  
-        }
         
 		Customer c = new Customer();
 		c.setSno(request.getParameter("sno"));
@@ -235,14 +185,6 @@ public class JudjeServlet extends HttpServlet {
 	//done
 	private void add(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		//session check
-        HttpSession session=request.getSession(false); 
-        if(session==null)  
-        {  
-            response.sendRedirect("loginTest.jsp");  
-            return ;  
-        }
-        
 		request.setCharacterEncoding("utf-8");// setCharset
 		boolean flag = customerDAOImpl.getCountWithName(request.getParameter("sno"));
 		if (flag || request.getParameter("sno") == null || request.getParameter("sno") == "") {
@@ -302,12 +244,6 @@ public class JudjeServlet extends HttpServlet {
 			
 
 		}else {
-			/*
-			
-			HttpSession session = request.getSession();
-			session.setAttribute("login-user", user);
-			*/
-						//new session here
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			request.getSession().setAttribute("user", a);  
 		}

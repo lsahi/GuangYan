@@ -4,3 +4,4 @@ encoding//WebRoot/chargeSuccess.jsp=UTF-8
 encoding//src/com/servlet/SocketListener.java=GBK
 encoding//src/com/util/C3P0.java=GBK
 encoding/<project>=UTF-8
+separateDerivedEncodings=true

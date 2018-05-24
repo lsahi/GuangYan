@@ -20,6 +20,7 @@
     <listener-class>com.servlet.SocketListener</listener-class>
   </listener>
 
+<!-- 
   <filter>  
     <filter-name>JspFilter</filter-name>  
     <filter-class>com.servlet.JspFilter</filter-class>  
@@ -29,5 +30,5 @@
     <filter-name>JspFilter</filter-name>  
     <url-pattern>*.jsp</url-pattern>  
   </filter-mapping>
-
+ -->
 </web-app>

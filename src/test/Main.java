@@ -4,10 +4,10 @@ import java.util.List;
 import com.dao.AdminDAO;
 import com.dao.AdminDAOImpl;
 
-import com.dao.CustomerDAO;
-import com.dao.CustomerDAOImpl;
+import com.dao.StudentDAO;
+import com.dao.StudentDAOImpl;
 
-import com.po.Customer;
+import com.po.Student;
 import com.po.Admin;
 
 public class Main {

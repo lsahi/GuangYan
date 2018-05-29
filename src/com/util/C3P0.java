@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.dao.CustomerDAOImpl;
+import com.dao.StudentDAOImpl;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class C3P0 {

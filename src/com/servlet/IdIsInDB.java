@@ -10,9 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.servlet.JudjeServlet;
-import com.dao.CustomerDAOImpl;
+import com.dao.StudentDAOImpl;
 import com.dao.FixTimeDAOImpl;
-import com.po.Customer;
+import com.po.Student;
 import com.po.FixTime;
 import com.util.C3P0;
 
@@ -23,8 +23,8 @@ public class IdIsInDB extends HttpServlet{
 	
 	public static void idInDB(String ID, String name)throws Exception{
 		
-		Customer c = new Customer();
-		CustomerDAOImpl cus=new CustomerDAOImpl();
+		Student c = new Student();
+		StudentDAOImpl cus=new StudentDAOImpl();
 		FixTime fix=new FixTime();
 		FixTimeDAOImpl f=new FixTimeDAOImpl();
 		
@@ -51,10 +51,10 @@ public class IdIsInDB extends HttpServlet{
 			//get timesLeft
 			if(time>0) {
 				if(time==1) {
-					;//System.out.println(); ÓÃ»§½öÊ£1´Î£¬ÌáÐÑ³äÖµ
+					;//System.out.println(); ï¿½Ã»ï¿½ï¿½ï¿½Ê£1ï¿½Î£ï¿½ï¿½ï¿½ï¿½Ñ³ï¿½Öµ
 				}
 				c.setTimesLeft(time-1);
-				fix.setOperation("Ïû·Ñ");
+				fix.setOperation("ï¿½ï¿½ï¿½ï¿½");
 				fix.setTimesLeft((time-1)+"");
 				fix.setCurrentTime();
 				cus.update(c);
@@ -64,7 +64,7 @@ public class IdIsInDB extends HttpServlet{
 			}else {
 				c.setTimesLeft(time);
 				cus.update(c);
-				fix.setOperation("Óà¶î²»×ã£¬Ïû·ÑÊ§°Ü");
+				fix.setOperation("ï¿½ï¿½î²»ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 				fix.setTimesLeft(time+"");
 				fix.setCurrentTime();
 				f.save(fix);
@@ -77,7 +77,7 @@ public class IdIsInDB extends HttpServlet{
 			c.setSno(ID);
 			c.setSname(name);
 			c.setPhone(" ");
-			c.setInformation("ÎÞ±¸×¢");
+			c.setInformation("ï¿½Þ±ï¿½×¢");
 			c.setTimesLeft(0);
 			
 			//use SystemAuto here for test
@@ -87,7 +87,7 @@ public class IdIsInDB extends HttpServlet{
 			fix.setTimeName(fix.getCurrentTime()+" - SystemAuto");
 			fix.setUserID(ID);
 			fix.setUserName(name);
-			fix.setOperation("×¢²á");
+			fix.setOperation("×¢ï¿½ï¿½");
 			fix.setTimesLeft("0");
 			fix.setCurrentTime();
 			

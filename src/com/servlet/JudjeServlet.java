@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.dao.AdminDAOImpl;
-import com.dao.CustomerDAOImpl;
+import com.dao.StudentDAOImpl;
 import com.dao.FixTimeDAOImpl;
 import com.po.Admin;
-import com.po.Customer;
+import com.po.Student;
 import com.po.FixTime;
 
 public class JudjeServlet extends HttpServlet {
@@ -22,7 +22,7 @@ public class JudjeServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	CustomerDAOImpl customerDAOImpl = new CustomerDAOImpl();
+	StudentDAOImpl studentDAOImpl = new StudentDAOImpl();
 	FixTimeDAOImpl fixTimeDAOImpl=new FixTimeDAOImpl();
 	
     /**
@@ -105,7 +105,7 @@ public class JudjeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String sno = request.getParameter("sno");
-		customerDAOImpl.delete(sno);
+		studentDAOImpl.delete(sno);
 		response.sendRedirect("queryCustomerServlet.do");
 	}
 	
@@ -116,26 +116,27 @@ public class JudjeServlet extends HttpServlet {
 		
 		//
 		//String oldSno = request.getParameter("sno");
+		
+		//
 		String sno = request.getParameter("sno");
 		String sname = request.getParameter("sname");
 		String phone = request.getParameter("phone");
-		String timesLeft = request.getParameter("timesLeft");
-		String information = request.getParameter("information");
-		int charged =Integer.parseInt(timesLeft);//��������
+		String smail = request.getParameter("email");
+		String password = request.getParameter("passwrod");
 		//test accepted 
 
-		Customer c = new Customer();
-		CustomerDAOImpl temp=new CustomerDAOImpl();
+		Student c = new Student();
+		StudentDAOImpl temp=new StudentDAOImpl();
 		int left;
-		//left=Integer.parseInt(c.getTimesLeft()); //�������ݿ���ԭ��
-		c.setSno(sno);
-		Customer stu=temp.getSigner(sno);
 
-		left=charged+Integer.parseInt(stu.getTimesLeft());
+		//get UID
+		c.setSno(sno);
+		
+		Student stu=temp.getSigner(sno);
 		c.setSname(sname);
 		c.setPhone(phone);
-		c.setTimesLeft(left);					//ʵ��ʣ��
-		c.setInformation(information);
+		c.setPassword(password);
+		c.setMail(smail);
 		
 
 		FixTime fix=new FixTime();
@@ -160,7 +161,7 @@ public class JudjeServlet extends HttpServlet {
 		fix.setCurrentTime();
 		
 		fixTimeDAOImpl.save(fix);
-		customerDAOImpl.update(c);
+		studentDAOImpl.update(c);
 		response.sendRedirect("queryCustomerServlet.do");
 	}
 
@@ -171,7 +172,7 @@ public class JudjeServlet extends HttpServlet {
         
 		request.setCharacterEncoding("utf-8");// setCharset
 		String sno = request.getParameter("sno");
-		Customer customer = customerDAOImpl.getSigner(sno);
+		Student customer = studentDAOImpl.getSigner(sno);
 		request.setAttribute("customer", customer);
 		request.getRequestDispatcher("update.jsp").forward(request, response);
 	}
@@ -179,32 +180,43 @@ public class JudjeServlet extends HttpServlet {
 	private void query(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
         
-		Customer c = new Customer();
+		Student c = new Student();
 		c.setSno(request.getParameter("sno"));
 		c.setSname(request.getParameter("sname"));
 		c.setPhone(request.getParameter("phone"));
 		
-		List<Customer> listCustomer = customerDAOImpl.getForCustomer(c);
+		List<Student> listCustomer = studentDAOImpl.getForCustomer(c);
 		request.setAttribute("listCustomer" ,listCustomer);
 		request.getRequestDispatcher("query.jsp").forward(request, response);
 	}
 
+	// TODO
+	private void addStuden(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		request.setCharacterEncoding("utf-8");// setCharset
+		
+	}
+	
 	//done
 	private void add(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
         
 		request.setCharacterEncoding("utf-8");// setCharset
 		
-		boolean flag = customerDAOImpl.getCountWithName(request.getParameter("sno"));
-		if (flag || request.getParameter("sno") == null || request.getParameter("sno") == "") {
-			request.setAttribute("msg", "错误" + request.getParameter("sno") + "用户为空");
-			request.getRequestDispatcher("add.jsp").forward(request, response);
-		} else {
-			Customer c = new Customer();
-			c.setSno(request.getParameter("sno"));
+		boolean flag = studentDAOImpl.getCountWithName(request.getParameter("sno"));
+		//
+		if (flag || request.getParameter("sname") == null || request.getParameter("sname") == "") {
+			request.setAttribute("msg", "错误,用户昵称为空");
+			request.getRequestDispatcher("addStudent.jsp").forward(request, response);
+		} else if(flag || request.getParameter("password") == null || request.getParameter("password") == ""){
+			request.setAttribute("msg", "错误,用户密码为空");
+			request.getRequestDispatcher("addStudent.jsp").forward(request, response);
+		}else {
+			Student c = new Student();
+			//c.setSno(request.getParameter("sno"));
 			c.setSname(request.getParameter("sname"));
 			c.setPhone(request.getParameter("phone"));
-			c.setInformation(request.getParameter("information"));
+			c.setMail(request.getParameter("smail"));
 			//System.out.println(request.getParameter("information")+1);
 			/*
 			if((request.getParameter("information"))==" ") {
@@ -219,24 +231,11 @@ public class JudjeServlet extends HttpServlet {
 			/*
 			 * ��ӵ���¼ 
 			 */
-			FixTime fix=new FixTime();
-			/**
-			 * 
-			 */
-			String admin=thisAdmin;
-			String timeName=fix.getCurrentTime()+" - "+admin;
+		
+			studentDAOImpl.save(c);
 			
-			fix.setTimeName(timeName);
-			fix.setUserID(c.getSno());
-			fix.setUserName(c.getSname());
-			fix.setOperation("ע��");
-			fix.setTimesLeft("0");
-			fix.setCurrentTime();
-			
-			fixTimeDAOImpl.save(fix);
-			customerDAOImpl.save(c);
-			
-			request.setAttribute("msg", "��ϲ�㣬�����֤" + request.getParameter("sno") + "ע��ɹ����뷵�ز鿴��������");
+			//注册成功
+			request.setAttribute("msg", "注册成功֤" + request.getParameter("sno") + "ע��ɹ����뷵�ز鿴��������");
 			
 			request.getRequestDispatcher("add.jsp").forward(request, response);
 		}
@@ -244,26 +243,30 @@ public class JudjeServlet extends HttpServlet {
 	
 	//
 	private void pwCertifacate(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Admin a=new Admin();
-		AdminDAOImpl ad=new AdminDAOImpl();
-		a.setUser(request.getParameter("user"));
-		a.setPassword(request.getParameter("password"));
+		Student s=new Student();
+		StudentDAOImpl sd=new StudentDAOImpl();
+		//
+		s.setSname(request.getParameter("user"));
+		s.setPassword(request.getParameter("password"));
 		//get username this time
 		thisAdmin=request.getParameter("user");
 		if(!ad.certificate(a)) {
-			request.setAttribute("msg", "�˺�������"+"��ƥ�䣬����������");
 			
+			request.setAttribute("msg", "�˺�������"+"��ƥ�䣬����������");
 
 		}else {
 			/*
-			
 			HttpSession session = request.getSession();
 			session.setAttribute("login-user", user);
 			*/
 						//new session here
 			request.getRequestDispatcher("index.jsp").forward(request, response);
-			request.getSession().setAttribute("user", a);  
+			request.getSession().setAttribute("user", s);  
 		}
+		
+	}
+	
+	private void studentLogin(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 	}
 	

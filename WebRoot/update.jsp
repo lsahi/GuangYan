@@ -1,4 +1,4 @@
-<%@page import="com.po.Customer"%>
+<%@page import="com.po.Student"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
 <%@ page session="true" %>
 
@@ -40,18 +40,18 @@
     
     
     <%
-    	out.print("<br><br><br><br>");
-		Object msg = request.getAttribute("msg");
-		if (msg != null) { 
-			out.print("<div class=\"alert alert-info\" role=\"alert\"><h4>");
-			out.println(msg);
-			out.print("</h4></div>");
-		} 
-	%>
+            	out.print("<br><br><br><br>");
+            		Object msg = request.getAttribute("msg");
+            		if (msg != null) { 
+            	out.print("<div class=\"alert alert-info\" role=\"alert\"><h4>");
+            	out.println(msg);
+            	out.print("</h4></div>");
+            		}
+            %>
 		
 	 <%
-    	Customer c = (Customer) request.getAttribute("customer");
-     %>
+			 	Student c = (Student) request.getAttribute("customer");
+			 %>
     
 	<div class="center-block" style="width:400px;">
 	<form action="update.do" method = "post">

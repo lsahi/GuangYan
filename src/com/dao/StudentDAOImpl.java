@@ -8,27 +8,27 @@ import java.util.List;
 
 import com.util.C3P0;
 
-import com.po.Customer;
+import com.po.Student;
 import com.po.FixTime;
 
-public class CustomerDAOImpl implements CustomerDAO{
+public class StudentDAOImpl implements StudentDAO{
 
 	PreparedStatement stmt;
 	ResultSet rs;
 
 	/*
-	 * ÓÃÕâ¸ö·½·¨ getForCustomer´úÌægetAllInformation·½·¨
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ getForCustomerï¿½ï¿½ï¿½ï¿½getAllInformationï¿½ï¿½ï¿½ï¿½
 	 * */
 	@Override 
-	public List<Customer> getAllInformation() throws Exception {
+	public List<Student> getAllInformation() throws Exception {
 		// TODO Auto-generated method stub
-		List<Customer> list = new ArrayList<Customer>();
+		List<Student> list = new ArrayList<Student>();
 		Connection conn = C3P0.getConnection();
 		String sql = "select * from student";
 		stmt = conn.prepareStatement(sql);
 		rs = stmt.executeQuery();
 		while (rs.next()) {
-			Customer stu = new Customer();
+			Student stu = new Student();
 			stu.setSno(rs.getString("Sno"));//Sno will be changed into IDCard in the future
 			stu.setSname(rs.getString("Sname"));
 			stu.setPhone(rs.getString("Phone"));
@@ -41,7 +41,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 	
 	@Override
-	public void update(Customer customer) throws Exception {
+	public void update(Student customer) throws Exception {
 		// TODO Auto-generated method stub
 		String sql = "update student set sno = ?, sname = ?, phone = ?, timesleft=?, information=? where sno = ?";
 		Connection conn = C3P0.getConnection();
@@ -61,7 +61,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 
 	@Override
-	public void save(Customer customer) throws Exception {
+	public void save(Student customer) throws Exception {
 		// TODO Auto-generated method stub
 		String sql = "insert into student values(?, ?, ?, ?, ?)";
 		Connection conn = C3P0.getConnection();
@@ -76,16 +76,16 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 	
 	@Override
-	public Customer getSigner(String Sno) throws Exception {
+	public Student getSigner(String Sno) throws Exception {
 		// TODO Auto-generated method stub
 		String sql = "select * from student where Sno = ?";
 		Connection conn = C3P0.getConnection();
 		stmt = conn.prepareStatement(sql);
 		stmt.setString(1, Sno);
 		ResultSet rs = stmt.executeQuery();
-		Customer stu = null;
+		Student stu = null;
 		if (rs.next()) {
-			stu = new Customer();
+			stu = new Student();
 			stu.setSno(rs.getString("Sno"));
 			stu.setSname(rs.getString("Sname"));
 			stu.setPhone(rs.getString("Phone"));
@@ -126,9 +126,9 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 
 	@Override
-	public List<Customer> getForCustomer(Customer c) throws Exception {
+	public List<Student> getForCustomer(Student c) throws Exception {
 
-		List<Customer> list = new ArrayList<Customer>();
+		List<Student> list = new ArrayList<Student>();
 		Connection conn = C3P0.getConnection();
 		String sql = "select * from student where sno like ? and sname like ? and phone like ?";
 		stmt = conn.prepareStatement(sql);
@@ -137,7 +137,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 		stmt.setString(3, c.getPhone() == null ? "%%" : "%" + c.getPhone() + "%");
 		rs = stmt.executeQuery();
 		while (rs.next()) {
-			Customer stu = new Customer();
+			Student stu = new Student();
 			stu.setSno(rs.getString("Sno"));
 			stu.setSname(rs.getString("Sname"));
 			stu.setPhone(rs.getString("Phone"));

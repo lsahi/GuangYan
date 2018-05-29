@@ -17,15 +17,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dao.AdminDAOImpl;
-import com.dao.CustomerDAOImpl;
+import com.dao.StudentDAOImpl;
 import com.dao.FixTimeDAOImpl;
 import com.po.Admin;
-import com.po.Customer;
+import com.po.Student;
 import com.po.FixTime;
 
 public class FixTimeServlet extends HttpServlet{
 	
-	CustomerDAOImpl customerDAOImpl = new CustomerDAOImpl();
+	StudentDAOImpl studentDAOImpl = new StudentDAOImpl();
 	FixTimeDAOImpl fixTimeDAOImpl = new FixTimeDAOImpl();
     /**
      * @see HttpServlet#HttpServlet()
@@ -76,8 +76,8 @@ public class FixTimeServlet extends HttpServlet{
 	}
 	
 	
-	//²éÑ¯¹¦ÄÜÔÝ¶¨Îª±ØÐëÍ¨¹ýÊäÈëIDÀ´ÊµÏÖ
-	//²éÑ¯¹¦ÄÜÊÇÒ»¸öµ¥¶ÀµÄÄ£¿é
+	//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ý¶ï¿½Îªï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½Êµï¿½ï¿½
+	//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½
 	
 	private void query(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		

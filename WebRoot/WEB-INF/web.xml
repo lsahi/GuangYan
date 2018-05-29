@@ -15,20 +15,11 @@
     <servlet-name>JudjeServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
-  
+  <!-- 
+  made for Guangyan System
+  not needed for the App
   <listener>
     <listener-class>com.servlet.SocketListener</listener-class>
   </listener>
-
-<!-- 
-  <filter>  
-    <filter-name>JspFilter</filter-name>  
-    <filter-class>com.servlet.JspFilter</filter-class>  
-  </filter>  
-  
-  <filter-mapping>  
-    <filter-name>JspFilter</filter-name>  
-    <url-pattern>*.jsp</url-pattern>  
-  </filter-mapping>
- -->
+   -->
 </web-app>

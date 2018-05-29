@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.po.Admin;
-import com.po.Customer;
+import com.po.Student;
 import com.util.C3P0;
 
 public class AdminDAOImpl implements AdminDAO{

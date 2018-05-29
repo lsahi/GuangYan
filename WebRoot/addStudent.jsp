@@ -1,4 +1,4 @@
-<%@ page import="com.po.Customer"%>
+<%@ page import="com.po.Student"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
 <%@ page session="true" %>
 
@@ -50,50 +50,50 @@
 			
 			<tr>
 				<td>昵称:</td>
-				<td><input type = "text" name = "sname" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sname")%>"></td>
+				<td><input type = "text" name = "sname" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("sname")%>"></td>
 			</tr>
 			
 			<tr>
 				<td>密码:</td>
-				<td><input type = "text" name = "password" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
+				<td><input type = "text" name = "password" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
 			</tr>
 			
 			<tr>
 				<td>邮箱:</td>
-				<td><input type = "text" name = "information" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
+				<td><input type = "text" name = "smail" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
 			</tr>
 			
 			<tr>
 				<td>手机:</td>
-				<td><input type = "text" name = "phone" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("phone")%>"></td>
+				<td><input type = "text" name = "phone" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("phone")%>"></td>
 			</tr>
 			<div>
 				<label class="checkbox-inline">
-			         <input type="checkbox" id="inlineCheckbox1" value="option1"> 大创
+			         <input type="checkbox" id="inlineCheckbox1" value="1"> 大创
 			    </label>
 			    <label class="checkbox-inline">
-			        <input type="checkbox" id="inlineCheckbox2" value="option2"> 著作权
+			        <input type="checkbox" id="inlineCheckbox2" value="2"> 著作权
 			    </label>
 			    <label class="checkbox-inline">
-			        <input type="checkbox" id="inlineCheckbox3" value="option3"> 建模
+			        <input type="checkbox" id="inlineCheckbox3" value="3"> 建模
 			    </label>
 			    <label class="checkbox-inline">
-			        <input type="checkbox" id="inlineCheckbox3" value="option4"> 自习
+			        <input type="checkbox" id="inlineCheckbox3" value="4"> 自习
 			    </label>
 			</div>
 			<div>
 			    
 			    <label class="radio-inline">
-			        <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> 男
+			        <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="1" checked> 男
 			    </label>
 			    <label class="radio-inline">
-			        <input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="option2"> 女
+			        <input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="0"> 女
 			    </label>
 			</div>
 			<!-- addCustomerServlet.do -->
 			<tr>	
-				<td><input type = "submit" value = "添加" class="btn btn-primary btn-block"></td>
-				<td class = "btn btn-link"><a href = "queryCustomerServlet.do">返回</a></td>
+				<td><input type = "submit" value = "添加" class="btn btn-primary btn-block"></td>	
+				<!-- <td class = "btn btn-link"><a href = "queryCustomerServlet.do">返回</a></td> -->
 			</tr>
 		</table>
 	</form>

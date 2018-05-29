@@ -13,7 +13,7 @@ import com.util.C3P0;
 
 import com.po.FixTime;
 import com.po.Admin;
-import com.po.Customer;
+import com.po.Student;
 import com.dao.FixTimeDAO;
 
 public class FixTimeDAOImpl implements FixTimeDAO{
@@ -92,8 +92,8 @@ public class FixTimeDAOImpl implements FixTimeDAO{
 		return list;
 	}
 	
-	//Ä£ºý²éÑ¯
-	//²»ÖªµÀ
+	//Ä£ï¿½ï¿½ï¿½ï¿½Ñ¯
+	//ï¿½ï¿½Öªï¿½ï¿½
 	@Override
 	public List<FixTime> getForFixTime(FixTime t) throws Exception{
 		// TODO Auto-generated method stub

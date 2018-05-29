@@ -1,4 +1,4 @@
-<%@page import="com.po.Customer"%>
+<%@page import="com.po.Student"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -68,9 +68,9 @@
 	</div>
 	<br>
 	<%
-		List<Customer> customers = (List<Customer>) request.getAttribute("listCustomer");
-	 	if (customers != null && customers.size() > 0) {
-	 %>
+		List<Student> customers = (List<Student>) request.getAttribute("listCustomer");
+		 	if (customers != null && customers.size() > 0) {
+	%>
 		
 		<table class = "table table-bordered table-hover">
 			<tr>
@@ -84,8 +84,8 @@
 			</tr>
 			
 			<%
-				for (Customer c : customers) {
-			 %>
+							for (Student c : customers) {
+						%>
 			<!-- 现在获取不到TimesLeft和information -->
 			<tr>
 				<th><a href = "queryChangeInfo.do?UserID=<%=c.getSno()%>" style="color:#595959"><%=c.getSno() %></a></th>

@@ -45,7 +45,7 @@
     
 	<div class="center-block" style="width:400px;">
 	<form action="addCustomerServlet.do" method = "post">
-		<h2 class="form-signin-heading">添加用户</h2>
+		<h2 class="form-signin-heading">修改个人信息</h2>
 		<table>
 			
 			<tr>

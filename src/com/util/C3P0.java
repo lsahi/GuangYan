@@ -5,8 +5,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.dao.ActivityDAOImpl;
 import com.dao.StudentDAOImpl;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.po.Activity;
+import com.servlet.JsonCreator;
 
 public class C3P0 {
 	//
@@ -60,6 +63,34 @@ public class C3P0 {
 		} else {
 			System.out.println("Connection Error");
 		}
+	//connection part above
+		
+		
+		
+		//test accepted
+		JsonCreator creator=new JsonCreator();
+		ActivityDAOImpl myActivity=new ActivityDAOImpl();
+		List<Activity> activities=myActivity.selectAllActivity();
+		
+		for(Activity a:activities) {
+			System.out.println(a.getId()+"  "+a.getHost()+"  "+a.getName()+"  "+a.getDetails());
+		}
+
+		String showAllJson=creator.JsonCreator(activities);
+		System.out.println(showAllJson);
+		//System.out.println(creator.activityJsonCreator(activities));
+		
+		
+		/*
+		//test accept
+		ActivityDAOImpl myActivity=new ActivityDAOImpl();
+		
+		List<Activity> activities=myActivity.select("´´");
+		
+		for(Activity a:activities) {
+			System.out.println(a.getId()+"  "+a.getHost()+"  "+a.getName()+"  "+a.getDetails());
+		}
+		*/
 		
 		//test accepted
 		/*

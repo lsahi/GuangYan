@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dao.ActivityDAOImpl;
 import com.dao.AdminDAOImpl;
 import com.dao.StudentDAOImpl;
 import com.dao.FixTimeDAOImpl;
+import com.po.Activity;
 import com.po.Admin;
 import com.po.Student;
 import com.po.FixTime;
@@ -52,6 +55,9 @@ public class JudjeServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	/**
+	 * method select list
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//HttpSession session=null;
 		request.setCharacterEncoding("utf-8");// setCharset
@@ -79,6 +85,8 @@ public class JudjeServlet extends HttpServlet {
 				edit(request, response);
 			} else if ("update".equals(methodName)) {
 				update(request, response);
+			} else if ("showAllActivities".equals(methodName)) {
+				showAllActivities(request,response);
 			}
 			/*
 			else if ("add".equals(methodName)) {
@@ -241,6 +249,24 @@ public class JudjeServlet extends HttpServlet {
 		}
 	}
 	
+	//TODO
+	//MAIN PAGE  -- SHOW ALL --
+	private void showAllActivities(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		response.setContentType("text/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		JsonCreator creator=new JsonCreator();
+		ActivityDAOImpl myActivity=new ActivityDAOImpl();
+		List<Activity> activities=myActivity.selectAllActivity();
+		String showAll=myActivity.activityToJson(activities);
+		System.out.println(showAll);
+		
+		out.println(showAll);
+		out = response.getWriter();
+		
+	}
+	
 	//
 	private void pwCertifacate(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Student s=new Student();
@@ -266,8 +292,31 @@ public class JudjeServlet extends HttpServlet {
 		
 	}
 	
+	//TODO
 	private void studentLogin(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		Student s=new Student();
+		StudentDAOImpl sd=new StudentDAOImpl();
+		//
+		s.setSname(request.getParameter("user"));
+		s.setPassword(request.getParameter("password"));
+		//get username this time
+		thisAdmin=request.getParameter("user");
+		//
+		if(!ad.certificate(a)) {
+			
+			request.setAttribute("msg", "�˺�������"+"��ƥ�䣬����������");
+
+		}else {
+			/*
+			HttpSession session = request.getSession();
+			session.setAttribute("login-user", user);
+			*/
+						//new session here
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+			request.getSession().setAttribute("user", s);  
+		}
 		
 	}
+	
 	
 }

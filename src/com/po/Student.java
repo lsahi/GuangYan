@@ -7,6 +7,7 @@ public class Student {
 	String password;
 	String smail;
 	String phone;
+	
 	int gender;
 	int type1;
 	int type2;

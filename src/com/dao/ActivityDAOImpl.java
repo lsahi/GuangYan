@@ -79,6 +79,30 @@ public class ActivityDAOImpl implements ActivityDAO{
 		return list;
 	}
 	
+	public void addActivity(Activity activity)throws Exception{
+		//?
+		
+			String sql = "insert into activity values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			Connection conn=C3P0.getConnection();
+				
+			stmt=conn.prepareStatement(sql);
+				
+				//stmt.setInt(1, 1);
+			stmt.setString(1, activity.getId());				
+			stmt.setString(2, activity.getHost());
+			stmt.setString(3, activity.getName());
+			stmt.setString(4, activity.getDetails());
+			stmt.setInt(5, activity.getType1());
+			stmt.setInt(6, activity.getType2());
+			stmt.setInt(7, activity.getType3());
+			stmt.setInt(8, activity.getType4());
+			stmt.setInt(9, 1);
+				
+			stmt.executeUpdate();
+			
+			conn.close();
+	}
+	
 	public String activityToJson(List<Activity> myActivity) {
 		JsonCreator creator=new JsonCreator();
 		String showAllJson=creator.JsonCreator(myActivity);

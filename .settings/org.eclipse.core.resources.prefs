@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
-encoding//WebRoot/charge1.jsp=UTF-8
-encoding//WebRoot/chargeSuccess.jsp=UTF-8
+encoding//WebRoot/activitySuccess.jsp=UTF-8
+encoding//WebRoot/sucecest.jsp=UTF-8
 encoding//src/com/servlet/SocketListener.java=GBK
 encoding//src/com/util/C3P0.java=GBK
 encoding/<project>=UTF-8

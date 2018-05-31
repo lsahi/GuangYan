@@ -117,5 +117,6 @@ public class FixTimeDAOImpl implements FixTimeDAO{
 		conn.close();
 		return list;
 	}
+	
 
 }

@@ -6,38 +6,21 @@ import com.po.Student;
 
 public interface StudentDAO {
 	
-	/*
-	 * ��ȡ������Ϣ
-	 * */
-	public List<Student> getAllInformation() throws Exception;
+	//
+	public void addStudent(Student student) throws Exception;
 	
-	/*
-	 * �����Ϣ�������Ϊ����save,����add
-	 * */
-	public void save(Student customer) throws Exception;
-	 
-	/*
-	 * ��ȡ������Ϣ
-	 * */
-	public Student getSigner(String Sno) throws Exception;
+	//get student from name
+	public Student getSigner(String sname) throws Exception;
 	
-	/*
-	 * ɾ����Ϣ
-	 * */
-	public void delete(String Sno) throws Exception;
-	
-	/*
-	 * ���������ͬ����Ϣ
-	 * */
-	public boolean getCountWithName(String Sname) throws Exception;
-	
-	/*
-	 * ģ����ѯ����
-	 * */
 	public List<Student> getForCustomer(Student c) throws Exception;
 	
-	public void update(Student c) throws Exception;
+	public void updateStudent(Student c) throws Exception;
 	
+	public String loginCheck(String sname, String password);
+	
+	public Student getSignerByName(String sname) throws Exception;
+	
+	public Student getSignerById(String sno) throws Exception;
 }
 
 

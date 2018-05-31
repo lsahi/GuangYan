@@ -14,6 +14,6 @@ public interface ActivityDAO {
 	
 	public String activityToJson(List<Activity> myActivity);
 	
-	public void addActivity()throws Exception;
+	public void addActivity(Activity activity)throws Exception;
 	
 }

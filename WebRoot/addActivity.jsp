@@ -42,28 +42,47 @@
 			out.print("</h4></div>");
 		} 
 	%>
-    
+    <% 
+		String path = request.getContextPath(); 
+		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; 
+		String host = request.getParameter("host");//用request得到 
+	%> 
 	<div class="center-block" style="width:400px;">
-	<form action="addCustomerServlet.do" method = "post">
+	<form action="addActivity.do" method = "post">
 		<h3 class="form-signin-heading">新建召集活动</h2>
 		<table>
-			
+			<tr>
+				<td>当前用户:</td>
+				<td><input type = "text" name = "host" class = "form-control" value = "<%= host%>" readonly="readonly"></td>
+			</tr>
 			<tr>
 				<td>召集活动名:</td>
-				<td><input type = "text" name = "sname" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("sname")%>"></td>
+				<td><input type = "text" name = "name" class = "form-control" value = "<%= request.getParameter("id") == null ? "" : request.getParameter("name")%>"></td>
 			</tr>
 			<br>
 			<tr>
 				<td>详细描述:</td>
-				<td><textarea class="form-control" name=detailed rows="4"></textarea></td>
-				<!-- <td><input type = "text" name = "password" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
+				<td><textarea class="form-control" name=details rows="4"></textarea></td>
+				<!-- <td><input type = "text" name = "password" class = "form-control" value = "<%= request.getParameter("id") == null ? "" : request.getParameter("details")%>"></td>
 			 -->
 			</tr>
-			
+			<div>
+				<label class="checkbox-inline">
+			        <input type="checkbox" name="type1" id="inlineCheckbox1" value="1"> 大创
+			    </label>
+			    <label class="checkbox-inline">
+			        <input type="checkbox" name="type2" id="inlineCheckbox2" value="1"> 著作权
+			    </label>
+			    <label class="checkbox-inline">
+			        <input type="checkbox" name="type3" id="inlineCheckbox3" value="1"> 建模
+			    </label>
+			    <label class="checkbox-inline">
+			        <input type="checkbox" name="type4" id="inlineCheckbox3" value="1"> 自习
+			    </label>
+			</div>
 			<!-- addCustomerServlet.do -->
 			<tr>	
 				<td><input type = "submit" value = "添加" class="btn btn-primary btn-block"></td>	
-				<!-- <td class = "btn btn-link"><a href = "queryCustomerServlet.do">返回</a></td> -->
 			</tr>
 		</table>
 	</form>

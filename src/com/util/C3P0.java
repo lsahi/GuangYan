@@ -10,6 +10,7 @@ import com.dao.StudentDAOImpl;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.po.Activity;
 import com.servlet.JsonCreator;
+import com.servlet.StringCheck;
 
 public class C3P0 {
 	//
@@ -26,7 +27,8 @@ public class C3P0 {
 	private static final String DRIVERCLASS = "com.mysql.jdbc.Driver";
 	private static final String sql="select * from student";
 	static ComboPooledDataSource dataSource = new ComboPooledDataSource();
-	
+
+	public static StringCheck check;
 	/*
 	用于连接本机上的默认实例名  
   
@@ -65,9 +67,12 @@ public class C3P0 {
 		}
 	//connection part above
 		
-		
+
+		int a = 1;
+		System.out.println(check.checkString(a));
 		
 		//test accepted
+		/*
 		JsonCreator creator=new JsonCreator();
 		ActivityDAOImpl myActivity=new ActivityDAOImpl();
 		List<Activity> activities=myActivity.selectAllActivity();
@@ -78,6 +83,7 @@ public class C3P0 {
 
 		String showAllJson=creator.JsonCreator(activities);
 		System.out.println(showAllJson);
+		*/
 		//System.out.println(creator.activityJsonCreator(activities));
 		
 		

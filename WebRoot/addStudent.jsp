@@ -44,7 +44,7 @@
 	%>
     
 	<div class="center-block" style="width:400px;">
-	<form action="addCustomerServlet.do" method = "post">
+	<form action="addStudent.do" method = "post">
 		<h2 class="form-signin-heading">添加用户</h2>
 		<table>
 			
@@ -55,12 +55,12 @@
 			
 			<tr>
 				<td>密码:</td>
-				<td><input type = "text" name = "password" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
+				<td><input type = "text" name = "password" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("password")%>"></td>
 			</tr>
 			
 			<tr>
 				<td>邮箱:</td>
-				<td><input type = "text" name = "smail" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
+				<td><input type = "text" name = "smail" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("smail")%>"></td>
 			</tr>
 			
 			<tr>
@@ -69,25 +69,24 @@
 			</tr>
 			<div>
 				<label class="checkbox-inline">
-			         <input type="checkbox" id="inlineCheckbox1" value="1"> 大创
+			        <input type="checkbox" name="type1" id="inlineCheckbox1" value="1"> 大创
 			    </label>
 			    <label class="checkbox-inline">
-			        <input type="checkbox" id="inlineCheckbox2" value="2"> 著作权
+			        <input type="checkbox" name="type2" id="inlineCheckbox2" value="1"> 著作权
 			    </label>
 			    <label class="checkbox-inline">
-			        <input type="checkbox" id="inlineCheckbox3" value="3"> 建模
+			        <input type="checkbox" name="type3" id="inlineCheckbox3" value="1"> 建模
 			    </label>
 			    <label class="checkbox-inline">
-			        <input type="checkbox" id="inlineCheckbox3" value="4"> 自习
+			        <input type="checkbox" name="type4" id="inlineCheckbox3" value="1"> 自习
 			    </label>
 			</div>
 			<div>
-			    
 			    <label class="radio-inline">
-			        <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="1" checked> 男
+			        <input type="radio" name="gender" id="optionsRadios1" value="1" checked> 男
 			    </label>
 			    <label class="radio-inline">
-			        <input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="0"> 女
+			        <input type="radio" name="gender" id="optionsRadios2"  value="0"> 女
 			    </label>
 			</div>
 			<!-- addCustomerServlet.do -->

@@ -9,49 +9,52 @@ import java.util.List;
 import com.util.C3P0;
 
 import com.po.Student;
+import com.servlet.DateToString;
 import com.po.FixTime;
 
 public class StudentDAOImpl implements StudentDAO{
 
 	PreparedStatement stmt;
 	ResultSet rs;
+	
+	@Override
+	public void addStudent(Student student) throws Exception{
+		
+		//?
+		
+		String sql = "insert into student (sname,password,smail,phone,gender,type1,type2,type3,type4) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		Connection conn=C3P0.getConnection();
+		
+		stmt=conn.prepareStatement(sql);
+		
+		//stmt.setInt(1, 1);
+		stmt.setString(1, student.getSname());
+		stmt.setString(2, student.getPassword());
+		stmt.setString(3, student.getMail());
+		stmt.setString(4, student.getPhone());
+		stmt.setInt(5, student.getGender());
+		stmt.setInt(6, student.getType1());
+		stmt.setInt(7, student.getType2());
+		stmt.setInt(8, student.getType3());
+		stmt.setInt(9, student.getType4());
+		
+		stmt.executeUpdate();
 
-	/*
-	 * ��������� getForCustomer����getAllInformation����
-	 * */
-	@Override 
-	public List<Student> getAllInformation() throws Exception {
-		// TODO Auto-generated method stub
-		List<Student> list = new ArrayList<Student>();
-		Connection conn = C3P0.getConnection();
-		String sql = "select * from student";
-		stmt = conn.prepareStatement(sql);
-		rs = stmt.executeQuery();
-		while (rs.next()) {
-			Student stu = new Student();
-			stu.setSno(rs.getString("Sno"));//Sno will be changed into IDCard in the future
-			stu.setSname(rs.getString("Sname"));
-			stu.setPhone(rs.getString("Phone"));
-			stu.setTimesLeft(rs.getInt(4));//colomn4 is timesLeft
-			stu.setInformation(rs.getString("information"));
-			list.add(stu);
-		}
 		conn.close();
-		return list;
 	}
 	
 	@Override
-	public void update(Student customer) throws Exception {
+	public void updateStudent(Student student) throws Exception {
 		// TODO Auto-generated method stub
-		String sql = "update student set sno = ?, sname = ?, phone = ?, timesleft=?, information=? where sno = ?";
+		String sql = "update student set Sname = ?, type1 = ?, type2 = ?, type3 = ?, type4 = ?, where sno = ?";
 		Connection conn = C3P0.getConnection();
 		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, customer.getSno());
-		stmt.setString(2, customer.getSname());
-		stmt.setString(3, customer.getPhone());
-		stmt.setString(4, customer.getTimesLeft());
-		stmt.setString(5, customer.getInformation());
-		stmt.setString(6, customer.getSno());
+		stmt.setString(1, student.getSname());
+		stmt.setInt(2, student.getType1());
+		stmt.setInt(3, student.getType2());
+		stmt.setInt(4, student.getType3());
+		stmt.setInt(5, student.getType4());
+		stmt.setString(6, student.getSno());
 		stmt.executeUpdate();
 		
 		//
@@ -60,70 +63,55 @@ public class StudentDAOImpl implements StudentDAO{
 		conn.close();
 	}
 
+	//done
 	@Override
-	public void save(Student customer) throws Exception {
+	public Student getSignerByName(String sname) throws Exception {
 		// TODO Auto-generated method stub
-		String sql = "insert into student values(?, ?, ?, ?, ?)";
+		String sql = "select * from student where Sname = ?";
 		Connection conn = C3P0.getConnection();
 		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, customer.getSno());
-		stmt.setString(2, customer.getSname());
-		stmt.setString(3, customer.getPhone());
-		stmt.setString(4, customer.getTimesLeft());//
-		stmt.setString(5, customer.getInformation()+" ");
-		stmt.executeUpdate();
-		conn.close();
-	}
-	
-	@Override
-	public Student getSigner(String Sno) throws Exception {
-		// TODO Auto-generated method stub
-		String sql = "select * from student where Sno = ?";
-		Connection conn = C3P0.getConnection();
-		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, Sno);
+		stmt.setString(1, sname);
 		ResultSet rs = stmt.executeQuery();
 		Student stu = null;
 		if (rs.next()) {
+			
 			stu = new Student();
 			stu.setSno(rs.getString("Sno"));
 			stu.setSname(rs.getString("Sname"));
+			stu.setPassword(rs.getString("password"));
+			stu.setMail(rs.getString("smail"));
 			stu.setPhone(rs.getString("Phone"));
-			stu.setTimesLeft(rs.getInt(4));
-			stu.setInformation(rs.getString("information"));
+			
+			stu.setGender(rs.getInt("gender"));
+			stu.setType(rs.getInt("type1"), rs.getInt("type2"), rs.getInt("type3"), rs.getInt("type4"));
 		}
 		conn.close();
 		return stu;
 	}
-
-	@Override
-	public void delete(String Sno) throws Exception {
-		// TODO Auto-generated method stub
-		
-		String sql = "delete from student where Sno = ?";
-		Connection conn = C3P0.getConnection();
-		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, Sno);
-		stmt.executeUpdate();
-		conn.close();
-	}
-
-	@Override
-	public boolean getCountWithName(String Sno) throws Exception {
+	public Student getSignerById(String sno) throws Exception {
 		// TODO Auto-generated method stub
 		String sql = "select * from student where Sno = ?";
 		Connection conn = C3P0.getConnection();
 		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, Sno);
+		stmt.setString(1, sno);
 		ResultSet rs = stmt.executeQuery();
+		Student stu = null;
 		if (rs.next()) {
-			conn.close();
-			return true;
-		} else {
-			conn.close();
-			return false;
+			
+			stu = new Student();
+			stu.setSno(rs.getString("Sno"));
+			stu.setSname(rs.getString("Sname"));
+			stu.setPassword(rs.getString("password"));
+			stu.setMail(rs.getString("smail"));
+			stu.setPhone(rs.getString("Phone"));
+			
+			stu.setGender(rs.getInt("gender"));
+			stu.setType(rs.getInt("type1"), rs.getInt("type2"), rs.getInt("type3"), rs.getInt("type4"));
 		}
+		conn.close();
+		return stu;
 	}
+	
 
 	@Override
 	public List<Student> getForCustomer(Student c) throws Exception {

@@ -4,7 +4,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>光盐管理系统</title>
+    <title>校园召集服务</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="bootstrap/js/jquery/2.0.0/jquery.min.js"></script>
@@ -25,14 +25,13 @@
   	<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="index.jsp">光盐管理系统</a>
+          <a class="navbar-brand">校园召集注册系统</a>
         </div>
       </div>
     </nav>
 
     <br><br><br><br>
     
-    <h2 class="form-signin-heading">消费成功</h2>
-    <a href = "queryCustomerServlet.do" type="button" class="col-md-3 btn btn-warning btn-block btn-lg" >返回</a>
-  </body>
+    <h2 class="form-signin-heading">注册成功</h2>
+    </body>
 </html>

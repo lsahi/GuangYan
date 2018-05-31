@@ -23,6 +23,8 @@ public class JudjeServlet extends HttpServlet {
 	
 	public String thisAdmin;
 	
+	private StringCheck check;
+	
 	private static final long serialVersionUID = 1L;
 	
 	StudentDAOImpl studentDAOImpl = new StudentDAOImpl();
@@ -75,8 +77,6 @@ public class JudjeServlet extends HttpServlet {
 		try {
 			if ("addCustomerServlet".equals(methodName)) {
 				add(request, response);
-			} else if ("queryCustomerServlet".equals(methodName)) {
-				query(request, response);
 			} else if ("queryChangeInfo".equals(methodName)) { //ChangeInfo
 				queryChangeInfo(request, response);
 			} else if ("delete".equals(methodName)) {
@@ -87,8 +87,15 @@ public class JudjeServlet extends HttpServlet {
 				update(request, response);
 			} else if ("showAllActivities".equals(methodName)) {
 				showAllActivities(request,response);
+			} else if ("addStudent".equals(methodName)) {
+				addStudent(request,response);
+			} else if ("addActivity".equals(methodName)) {
+				addActivity(request,response);
 			}
 			/*
+			 * else if ("queryCustomerServlet".equals(methodName)) {
+				query(request, response);
+			} 
 			else if ("add".equals(methodName)) {
 				charge(request, response);
 			} 
@@ -96,7 +103,8 @@ public class JudjeServlet extends HttpServlet {
 			//add here -pw certification
 		} catch (Exception e) {
 			// TODO: handle exception
-			response.sendRedirect("loginTest.jsp");
+			e.printStackTrace();
+			response.sendRedirect("failed.jsp");
 		}
 	}
 	
@@ -185,24 +193,76 @@ public class JudjeServlet extends HttpServlet {
 		request.getRequestDispatcher("update.jsp").forward(request, response);
 	}
 
-	private void query(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-        
-		Student c = new Student();
-		c.setSno(request.getParameter("sno"));
-		c.setSname(request.getParameter("sname"));
-		c.setPhone(request.getParameter("phone"));
-		
-		List<Student> listCustomer = studentDAOImpl.getForCustomer(c);
-		request.setAttribute("listCustomer" ,listCustomer);
-		request.getRequestDispatcher("query.jsp").forward(request, response);
-	}
-
 	// TODO
-	private void addStuden(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	private void addStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		request.setCharacterEncoding("utf-8");// setCharset
 		
+		Student s=new Student();
+		StudentDAOImpl sd=new StudentDAOImpl();
+		
+		DateToString d=new DateToString();
+		s.setSno(d.dateToString());
+		s.setSname(request.getParameter("sname"));
+		s.setPassword(request.getParameter("password"));
+		s.setMail(request.getParameter("smail"));
+		s.setPhone(request.getParameter("phone"));
+		s.setSname(request.getParameter("sname"));
+		s.setGender(stringToInt(request.getParameter("gender")));
+		
+		int type1=1,type2=1,type3=1,type4=1;
+		if((request.getParameter("type1") instanceof String)!=true) {
+			type1=0;
+		}
+		if((request.getParameter("type2") instanceof String)!=true) {
+			type2=0;
+		}
+		if((request.getParameter("type3") instanceof String)!=true) {
+			type3=0;
+		}
+		if((request.getParameter("type4") instanceof String)!=true) {
+			type4=0;
+		}
+		s.setType(type1,type2,type3,type4);
+		
+		sd.addStudent(s);
+
+		request.getRequestDispatcher("registerSuccess.jsp").forward(request, response);
+		
+	}
+	
+	private void addActivity(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");// setCharset
+		
+		Activity a=new Activity();
+		ActivityDAOImpl ad=new ActivityDAOImpl();
+
+		DateToString d=new DateToString();
+		
+		a.setId(d.dateToString());
+		//a.setHost("hostname");
+		a.setHost(request.getParameter("host"));
+		a.setName(request.getParameter("name"));
+		a.setDetails(request.getParameter("details"));
+		int type1=1,type2=1,type3=1,type4=1;
+		if((request.getParameter("type1") instanceof String)!=true) {
+			type1=0;
+		}
+		if((request.getParameter("type2") instanceof String)!=true) {
+			type2=0;
+		}
+		if((request.getParameter("type3") instanceof String)!=true) {
+			type3=0;
+		}
+		if((request.getParameter("type4") instanceof String)!=true) {
+			type4=0;
+		}
+
+		a.setType(type1,type2,type3,type4);
+
+		ad.addActivity(a);
+		
+		request.getRequestDispatcher("activitySuccess.jsp").forward(request, response);
 	}
 	
 	//done
@@ -318,5 +378,9 @@ public class JudjeServlet extends HttpServlet {
 		
 	}
 	
+	private int stringToInt(String s) {
+		int b = Integer.valueOf(s).intValue();
+		return b;
+	}
 	
 }

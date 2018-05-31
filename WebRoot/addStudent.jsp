@@ -45,7 +45,7 @@
     
 	<div class="center-block" style="width:400px;">
 	<form action="addStudent.do" method = "post">
-		<h2 class="form-signin-heading">添加用户</h2>
+		<h2 class="form-signin-heading">注册账号</h2>
 		<table>
 			
 			<tr>

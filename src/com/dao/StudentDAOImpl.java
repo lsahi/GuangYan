@@ -10,6 +10,8 @@ import com.util.C3P0;
 
 import com.po.Student;
 import com.servlet.DateToString;
+import com.servlet.JsonCreator;
+import com.po.Activity;
 import com.po.FixTime;
 
 public class StudentDAOImpl implements StudentDAO{
@@ -46,7 +48,7 @@ public class StudentDAOImpl implements StudentDAO{
 	@Override
 	public void updateStudent(Student student) throws Exception {
 		// TODO Auto-generated method stub
-		String sql = "update student set Sname = ?, type1 = ?, type2 = ?, type3 = ?, type4 = ?, where sno = ?";
+		String sql = "update student set Sname = ?, type1 = ?, type2 = ?, type3 = ?, type4 = ? where Sname = ?";
 		Connection conn = C3P0.getConnection();
 		stmt = conn.prepareStatement(sql);
 		stmt.setString(1, student.getSname());
@@ -54,7 +56,7 @@ public class StudentDAOImpl implements StudentDAO{
 		stmt.setInt(3, student.getType2());
 		stmt.setInt(4, student.getType3());
 		stmt.setInt(5, student.getType4());
-		stmt.setString(6, student.getSno());
+		stmt.setString(6, student.getSname());
 		stmt.executeUpdate();
 		
 		//
@@ -81,13 +83,30 @@ public class StudentDAOImpl implements StudentDAO{
 			stu.setPassword(rs.getString("password"));
 			stu.setMail(rs.getString("smail"));
 			stu.setPhone(rs.getString("Phone"));
-			
 			stu.setGender(rs.getInt("gender"));
 			stu.setType(rs.getInt("type1"), rs.getInt("type2"), rs.getInt("type3"), rs.getInt("type4"));
 		}
 		conn.close();
 		return stu;
 	}
+	
+	public boolean inDatabase(String sname)throws Exception{
+		
+		boolean flag=true;
+		
+		String sql = "select * from student where Sname = ?";
+		Connection conn = C3P0.getConnection();
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, sname);
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			return flag;
+		}else {
+			flag=false;
+			return flag;
+		}
+	}
+	
 	public Student getSignerById(String sno) throws Exception {
 		// TODO Auto-generated method stub
 		String sql = "select * from student where Sno = ?";
@@ -111,31 +130,37 @@ public class StudentDAOImpl implements StudentDAO{
 		conn.close();
 		return stu;
 	}
-	
+
+	public String studentToJson(List<Student> s) {
+		JsonCreator creator=new JsonCreator();
+		String showAllJson=creator.JsonCreator(s);
+		return showAllJson;
+	}
 
 	@Override
-	public List<Student> getForCustomer(Student c) throws Exception {
-
-		List<Student> list = new ArrayList<Student>();
-		Connection conn = C3P0.getConnection();
-		String sql = "select * from student where sno like ? and sname like ? and phone like ?";
-		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, c.getSno() == null ? "%%" : "%" + c.getSno() + "%");
-		stmt.setString(2, c.getSname() == null ? "%%" : "%" + c.getSname() + "%");
-		stmt.setString(3, c.getPhone() == null ? "%%" : "%" + c.getPhone() + "%");
-		rs = stmt.executeQuery();
-		while (rs.next()) {
-			Student stu = new Student();
-			stu.setSno(rs.getString("Sno"));
-			stu.setSname(rs.getString("Sname"));
-			stu.setPhone(rs.getString("Phone"));
-			stu.setTimesLeft(rs.getInt(4));//colomn4 is timesLeft
-			stu.setInformation(rs.getString("information"));
-			list.add(stu);
+	public boolean loginCheck(String sname, String password) {
+		
+		Student s=new Student();
+		try {
+			if(!inDatabase(sname)) {
+				return false;
+			} else {
+				s=this.getSignerByName(sname);
+				if(password.equals(s.getPassword())) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
-		conn.close();
-		return list;
+	
 	}
+	
+
 
 }
 

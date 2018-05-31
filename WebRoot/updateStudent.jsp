@@ -42,58 +42,54 @@
 			out.print("</h4></div>");
 		} 
 	%>
+	<% 
+		String path = request.getContextPath(); 
+		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; 
+		String sno = request.getParameter("sno");//用request得到 
+	%> 
     
 	<div class="center-block" style="width:400px;">
-	<form action="addCustomerServlet.do" method = "post">
+	<form action="updateStudent.do" method = "post">
 		<h2 class="form-signin-heading">修改个人信息</h2>
 		<table>
 			
 			<tr>
 				<td>昵称:</td>
-				<td><input type = "text" name = "sname" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sname")%>" readonly="true"></td>
+				<td><input type = "text" name = "sname" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("sname")%>"></td>
 			</tr>
 			
 			<tr>
 				<td>密码:</td>
-				<td><input type = "text" name = "password" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
+				<td><input type = "text" name = "password" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("password")%>"></td>
 			</tr>
 			
 			<tr>
 				<td>邮箱:</td>
-				<td><input type = "text" name = "information" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("sno")%>"></td>
+				<td><input type = "text" name = "smail" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("smail")%>"></td>
 			</tr>
 			
 			<tr>
 				<td>手机:</td>
-				<td><input type = "text" name = "phone" class = "form-control" value = "<%=request.getParameter("sno") == null ? "" : request.getParameter("phone")%>"></td>
+				<td><input type = "text" name = "phone" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("phone")%>"></td>
 			</tr>
 			<div>
-			<label class="checkbox-inline">
-			        <input type="checkbox" id="inlineCheckbox1" value="option1"> 大创
+				<label class="checkbox-inline">
+			        <input type="checkbox" name="type1" id="inlineCheckbox1" value="1"> 大创
 			    </label>
 			    <label class="checkbox-inline">
-			        <input type="checkbox" id="inlineCheckbox2" value="option2"> 著作权
+			        <input type="checkbox" name="type2" id="inlineCheckbox2" value="1"> 著作权
 			    </label>
 			    <label class="checkbox-inline">
-			        <input type="checkbox" id="inlineCheckbox3" value="option3"> 建模
+			        <input type="checkbox" name="type3" id="inlineCheckbox3" value="1"> 建模
 			    </label>
 			    <label class="checkbox-inline">
-			        <input type="checkbox" id="inlineCheckbox3" value="option4"> 自习
-			    </label>
-			</div>
-			<div readonly="true">
-			    
-			    <label class="radio-inline">
-			        <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> 男
-			    </label>
-			    <label class="radio-inline">
-			        <input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="option2"> 女
+			        <input type="checkbox" name="type4" id="inlineCheckbox3" value="1"> 自习
 			    </label>
 			</div>
 			<!-- addCustomerServlet.do -->
 			<tr>	
-				<td><input type = "submit" value = "添加" class="btn btn-primary btn-block"></td>
-				<td class = "btn btn-link"><a href = "queryCustomerServlet.do">返回</a></td>
+				<td><input type = "submit" value = "添加" class="btn btn-primary btn-block"></td>	
+				<!-- <td class = "btn btn-link"><a href = "queryCustomerServlet.do">返回</a></td> -->
 			</tr>
 		</table>
 	</form>

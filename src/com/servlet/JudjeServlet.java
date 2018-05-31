@@ -2,6 +2,7 @@ package com.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -89,8 +90,12 @@ public class JudjeServlet extends HttpServlet {
 				showAllActivities(request,response);
 			} else if ("addStudent".equals(methodName)) {
 				addStudent(request,response);
+			} else if ("updateStudent".equals(methodName)) {
+				updateStudent(request,response);
 			} else if ("addActivity".equals(methodName)) {
 				addActivity(request,response);
+			} else if ("studentLogin".equals(methodName)) {
+				studentLogin(request,response);
 			}
 			/*
 			 * else if ("queryCustomerServlet".equals(methodName)) {
@@ -193,7 +198,8 @@ public class JudjeServlet extends HttpServlet {
 		request.getRequestDispatcher("update.jsp").forward(request, response);
 	}
 
-	// TODO
+	
+	
 	private void addStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		request.setCharacterEncoding("utf-8");// setCharset
@@ -226,6 +232,42 @@ public class JudjeServlet extends HttpServlet {
 		s.setType(type1,type2,type3,type4);
 		
 		sd.addStudent(s);
+
+		request.getRequestDispatcher("registerSuccess.jsp").forward(request, response);
+		
+	}
+	
+	private void updateStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		request.setCharacterEncoding("utf-8");// setCharset
+		
+		Student s=new Student();
+		StudentDAOImpl sd=new StudentDAOImpl();
+		
+		DateToString d=new DateToString();
+		s.setSno(request.getParameter("sno"));
+		s.setSname(request.getParameter("sname"));
+		s.setPassword(request.getParameter("password"));
+		s.setMail(request.getParameter("smail"));
+		s.setPhone(request.getParameter("phone"));
+		s.setSname(request.getParameter("sname"));
+		
+		int type1=1,type2=1,type3=1,type4=1;
+		if((request.getParameter("type1") instanceof String)!=true) {
+			type1=0;
+		}
+		if((request.getParameter("type2") instanceof String)!=true) {
+			type2=0;
+		}
+		if((request.getParameter("type3") instanceof String)!=true) {
+			type3=0;
+		}
+		if((request.getParameter("type4") instanceof String)!=true) {
+			type4=0;
+		}
+		s.setType(type1,type2,type3,type4);
+		
+		sd.updateStudent(s);
 
 		request.getRequestDispatcher("registerSuccess.jsp").forward(request, response);
 		
@@ -309,6 +351,8 @@ public class JudjeServlet extends HttpServlet {
 		}
 	}
 	
+	
+	
 	//TODO
 	//MAIN PAGE  -- SHOW ALL --
 	private void showAllActivities(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -320,6 +364,8 @@ public class JudjeServlet extends HttpServlet {
 		ActivityDAOImpl myActivity=new ActivityDAOImpl();
 		List<Activity> activities=myActivity.selectAllActivity();
 		String showAll=myActivity.activityToJson(activities);
+		
+		//print to console
 		System.out.println(showAll);
 		
 		out.println(showAll);
@@ -327,6 +373,52 @@ public class JudjeServlet extends HttpServlet {
 		
 	}
 	
+
+	
+	//TODO
+	private void studentLogin(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		response.setContentType("text/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		Student s=new Student();
+		StudentDAOImpl sd=new StudentDAOImpl();
+		
+		String user;
+		String password;
+		user=request.getParameter("user");
+		password=request.getParameter("password");
+		boolean flag=true;
+		System.out.println("userget:"+user);
+		System.out.println("pw:"+password);
+		flag=sd.loginCheck(request.getParameter("user"), request.getParameter("password"));
+		if(!flag) {
+			//not you
+			out.println("bad login");
+			out = response.getWriter();
+			System.out.println("check not passed");
+		} else {
+			//return json
+			JsonCreator creator=new JsonCreator();
+			s=sd.getSignerByName(user);
+			List<Student> sList=new ArrayList<Student>();
+			sList.add(s);
+			String showStudent=sd.studentToJson(sList);
+			out.println(showStudent);
+
+			System.out.println(showStudent);
+			out = response.getWriter();
+		}
+	}
+	
+	private int stringToInt(String s) {
+		int b = Integer.valueOf(s).intValue();
+		return b;
+	}
+	
+	
+	
+	//
 	//
 	private void pwCertifacate(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Student s=new Student();
@@ -351,36 +443,4 @@ public class JudjeServlet extends HttpServlet {
 		}
 		
 	}
-	
-	//TODO
-	private void studentLogin(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		Student s=new Student();
-		StudentDAOImpl sd=new StudentDAOImpl();
-		//
-		s.setSname(request.getParameter("user"));
-		s.setPassword(request.getParameter("password"));
-		//get username this time
-		thisAdmin=request.getParameter("user");
-		//
-		if(!ad.certificate(a)) {
-			
-			request.setAttribute("msg", "�˺�������"+"��ƥ�䣬����������");
-
-		}else {
-			/*
-			HttpSession session = request.getSession();
-			session.setAttribute("login-user", user);
-			*/
-						//new session here
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-			request.getSession().setAttribute("user", s);  
-		}
-		
-	}
-	
-	private int stringToInt(String s) {
-		int b = Integer.valueOf(s).intValue();
-		return b;
-	}
-	
 }

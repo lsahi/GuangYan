@@ -53,7 +53,7 @@
 		<table>
 			<tr>
 				<td>当前用户:</td>
-				<td><input type = "text" name = "host" class = "form-control" value = "<%= host%>"></td>
+				<td><input type = "text" name = "host" class = "form-control" value = "<%= host%>" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>召集活动名:</td>

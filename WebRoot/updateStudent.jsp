@@ -45,7 +45,7 @@
 	<% 
 		String path = request.getContextPath(); 
 		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; 
-		String sno = request.getParameter("sno");//用request得到 
+		String sname = request.getParameter("sname");//用request得到 
 	%> 
     
 	<div class="center-block" style="width:400px;">
@@ -55,7 +55,7 @@
 			
 			<tr>
 				<td>昵称:</td>
-				<td><input type = "text" name = "sname" class = "form-control" value = "<%= request.getParameter("sno") == null ? "" : request.getParameter("sname")%>"></td>
+				<td><input type = "text" name = "sname" class = "form-control" value = "<%= sname%>" readonly="readonly"></td>
 			</tr>
 			
 			<tr>

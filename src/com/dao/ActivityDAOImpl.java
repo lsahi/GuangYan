@@ -52,7 +52,7 @@ public class ActivityDAOImpl implements ActivityDAO{
 		List<Activity> list = new ArrayList<Activity>();
 		Connection conn = C3P0.getConnection();
 		//
-		String sql = "select * from activity where activityname like ? or activityname like ? or activityinfo like ?";
+		String sql = "select * from activity where activityhost like ? or activityname like ? or activityinfo like ?";
 
 		//String sql = "select * from activity where activityname = ?";
 		//or activityname like %?% or activityinfo like %?%

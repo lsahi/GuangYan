@@ -96,6 +96,8 @@ public class JudjeServlet extends HttpServlet {
 				addActivity(request,response);
 			} else if ("studentLogin".equals(methodName)) {
 				studentLogin(request,response);
+			} else if ("showSelectedActivities".equals(methodName)) {
+				showSelectedActivities(request,response);
 			}
 			/*
 			 * else if ("queryCustomerServlet".equals(methodName)) {
@@ -369,6 +371,23 @@ public class JudjeServlet extends HttpServlet {
 		System.out.println(showAll);
 		
 		out.println(showAll);
+		out = response.getWriter();
+		
+	}
+	private void showSelectedActivities(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		response.setContentType("text/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		String keyword=request.getParameter("keyword");
+		JsonCreator creator=new JsonCreator();
+		ActivityDAOImpl myActivity=new ActivityDAOImpl();
+		List<Activity> activities=myActivity.select(keyword);
+		String show=myActivity.activityToJson(activities);
+		
+		//print to console
+		System.out.println(show);
+		
+		out.println(show);
 		out = response.getWriter();
 		
 	}

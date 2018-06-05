@@ -68,11 +68,11 @@ public class C3P0 {
 	//connection part above
 		
 
-		int a = 1;
-		System.out.println(check.checkString(a));
+		//int a = 1;
+		//System.out.println(check.checkString(a));
 		
 		//test accepted
-		/*
+		
 		JsonCreator creator=new JsonCreator();
 		ActivityDAOImpl myActivity=new ActivityDAOImpl();
 		List<Activity> activities=myActivity.selectAllActivity();
@@ -83,7 +83,7 @@ public class C3P0 {
 
 		String showAllJson=creator.JsonCreator(activities);
 		System.out.println(showAllJson);
-		*/
+		
 		//System.out.println(creator.activityJsonCreator(activities));
 		
 		
